@@ -85,7 +85,7 @@ $.merge(urls,vm.urls)
 console.log(vm)
 downloadFile(vm)
 setTimeout(function(){
- clear()
+ //clear()
  ajax(vm.next)
 },3*1000)
 
