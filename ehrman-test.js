@@ -1,4 +1,3 @@
-
 var urls=[]
 var errors=[]
 
@@ -78,15 +77,18 @@ var year=dt.find(".year").text()
 vm.dt=`${year}-${month}-${day}`
  vm.title=doc.filter('title').text().split("–")[0]+"(ehrmanblog.org)"
  vm.pdf = doc.find(".dkpdf-button")[0].href
- vm.next = doc.find(".wp-post-navigation-pre a")[0].href
+ vm.next = doc.find(".wp-post-navigation-next a")[0] ? doc.find(".wp-post-navigation-next a")[0].href : null
 vm.file=vm.dt+" "+vm.title+".pdf"
-vm.urls=doc.find("article a").map((i,v)=>v.href).filter((i,v)=>!v.includes("ehrmanblog.org"))
+vm.urls=doc.find("article a[href]").map((i,v)=>v.href).filter((i,v)=>!v.includes("ehrmanblog.org"))
 $.merge(urls,vm.urls)
 console.log(vm)
 downloadFile(vm)
 setTimeout(function(){
  //clear()
+if(vm.next!=null){
  ajax(vm.next)
+
+}
 },3*1000)
 
 // console.log(doc)
@@ -103,4 +105,8 @@ setTimeout(function(){
 
 } 
 
-ajax("https://ehrmanblog.org/ben-witherington-critique/")
+
+setTimeout(function(){
+ajax("https://ehrmanblog.org/do-we-need-to-suffer-the-argument-from-tectonic-plates/")
+
+},5*1000)
