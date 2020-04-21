@@ -12,7 +12,7 @@ addScript("https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js","firebaseA
 addScript("https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js","firebaseAnalytics");
 
 eval(`// Your web app's Firebase configuration
-  var firebaseConfig = {
+   var firebaseConfig = {
     apiKey: "AIzaSyBDWXJsbdzrShjKmJ6tnt5c7HFr-65HUDU",
     authDomain: "ehr-blog.firebaseapp.com",
     databaseURL: "https://ehr-blog.firebaseio.com",
@@ -24,6 +24,10 @@ eval(`// Your web app's Firebase configuration
   };
   // Initialize Firebase
 setTimeout(function(){
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+ if(!fire){
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      fire = true
+  }
+
 },3*1000)`)
