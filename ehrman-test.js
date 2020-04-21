@@ -1,5 +1,22 @@
-clear()
+
+var urls=[]
 var errors=[]
+
+var addScript=function(src,id){
+    var jq=document.createElement("script")
+    jq.id=id
+    jq.src=src
+    var head=document.querySelector("head")
+    if(!head.querySelector(`script[src="${src}"]`))
+         head.appendChild(jq)
+}
+
+addScript("https://code.jquery.com/jquery-3.5.0.min.js","jquery")
+
+
+
+clear()
+
 
 
 var downloadFile=function(data){
@@ -63,10 +80,13 @@ vm.dt=`${year}-${month}-${day}`
  vm.pdf = doc.find(".dkpdf-button")[0].href
  vm.next = doc.find(".wp-post-navigation-pre a")[0].href
 vm.file=vm.dt+" "+vm.title+".pdf"
+vm.urls=doc.find("article a").map((i,v)=>v.href).filter((i,v)=>!v.includes("ehrmanblog.org"))
+$.merge(urls,vm.urls)
 console.log(vm)
 downloadFile(vm)
 setTimeout(function(){
-ajax(vm.next)
+ clear()
+ ajax(vm.next)
 },3*1000)
 
 // console.log(doc)
@@ -74,7 +94,9 @@ ajax(vm.next)
 console.log("error",err)
 errors.push(url)
 setTimeout(function(){
-ajax(url)
+ if(errors.length<=30){
+    ajax(url)
+ }
 },10*1000)
 }) 
 
