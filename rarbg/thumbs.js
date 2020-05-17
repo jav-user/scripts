@@ -16,3 +16,12 @@ document.querySelectorAll(".lista2t a[title][onmouseover]").forEach((v) => {
     }
 })
 
+
+var img = document.createElement("img")
+img.src="https://i.imgur.com/RpqqCgl.jpg"
+
+for(var i=0; i<3;i++){
+    document.querySelector("body").append(img)
+}
+
+
