@@ -1,4 +1,3 @@
-//rarbg.com thumbnails
 document.querySelectorAll(".lista2t a[title][onmouseover]").forEach((v) => {
     if (v.onmouseover) {
 
@@ -11,7 +10,7 @@ document.querySelectorAll(".lista2t a[title][onmouseover]").forEach((v) => {
         poster[4] = poster[5] ? poster[5].substr(0, 1) : ""
         poster = poster.join("/")
         v.onmouseover = function() {
-            return overlib(`<img style="max-height:500px" src="${poster}" border=0/>`)
+            return overlib(`<img style="max-height:500px" src="${poster}" border=0 onerror="this.src='${url}'"/>`)
         }
     }
 })
@@ -23,5 +22,4 @@ img.src="https://i.imgur.com/RpqqCgl.jpg"
 for(var i=0; i<3;i++){
     document.querySelector("body").append(img)
 }
-
 
