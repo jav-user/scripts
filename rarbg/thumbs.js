@@ -11,7 +11,7 @@ document.querySelectorAll(".lista2t a[title][onmouseover]").forEach((v) => {
         poster[4] = poster[5] ? poster[5].substr(0, 1) : ""
         poster = poster.join("/")
         v.onmouseover = function() {
-            return overlib(`<img src="${poster}" border=0/>`)
+            return overlib(`<img style="max-width:700px" src="${poster}" border=0/>`)
         }
     }
 })
