@@ -2,7 +2,7 @@ const rarbgImg={
     "22pixx.xyz": src => src.replace("/s/","/i/")
 }
 
-$("#description img").each((i,img)=>{
+document.querySelectorAll("#description img").forEach(img=>{
     var dominio = img.src.split("/")[2]
     var link = img.parentNode.href
     console.log(img.src)
