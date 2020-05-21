@@ -7,7 +7,7 @@ Rarbg
     .get()
     .then(q => {
         q.forEach(doc => {
-            imgPlugins[sn.key] = function(imgSrc, link) {
+            imgPlugins[doc.id] = function(imgSrc, link) {
                 var fn = doc.data().f
                 console.log(doc.id, fn)
                 return eval(fn)
