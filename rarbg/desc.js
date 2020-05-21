@@ -1,5 +1,6 @@
 var rarbgImg={
-    "22pixx.xyz": src => src.replace("/s/","/i/")
+    "22pixx.xyz": src => src.replace("/s/","/i/"),
+    "imagecurl.com": src => src.replace("_thumb",""),
 }
 
 document.querySelectorAll("#description img").forEach(img=>{
