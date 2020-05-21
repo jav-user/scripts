@@ -26,7 +26,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 var dominio = img.src.split("/")[2]
                 var link = img.parentNode.href
                 console.log("imgSrc", img.src)
-                var id = dominio
+                var id = dominio.trim()
                 var newSrc = imgPlugins[id] ? imgPlugins[id](img.src, link) : img.src
                 if (img.src != newSrc) {
                     console.log("newSrc: " + newSrc)
