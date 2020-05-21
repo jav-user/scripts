@@ -31,8 +31,8 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 if (img.src != newSrc) {
                     console.log("newSrc: " + newSrc)
                     img.src = newSrc
-                    img.parentNode.href = newSrc
                     img.style.maxWidth = "750px"
+                    img.parentNode.href = newSrc
                 } else {
                     var ref = Rarbg.collection("missingPlugins").doc(id)
                     var doc = {
@@ -46,6 +46,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
                     batch.set(ref, doc)
                 }
             })
+            console.log("imgPlugins",imgPlugins)
             batch.commit()
         })
 
@@ -106,5 +107,4 @@ if (window.location.pathname.startsWith("/torrent/")) {
     }
 
 }
-
 
