@@ -32,6 +32,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
                     console.log("newSrc: " + newSrc)
                     img.src = newSrc
                     img.parentNode.href = newSrc
+                    img.style.maxWidth = "750px"
                 } else {
                     var ref = Rarbg.collection("missingPlugins").doc(id)
                     var doc = {
