@@ -42,11 +42,12 @@ if (window.location.pathname.startsWith("/torrent/")) {
         })
 
 
-    var tds = Array
-                .from(document.querySelectorAll("table tr td.lista"))
-                .map(td => td.innerText.trim())
-                .filter(txt => txt.endsWith("MB") || txt.endsWith("GB"))
+    var tds = document.querySelectorAll("table tr td.lista")
+    var arr = Array
+        .from(tds)
+        .map(td => td.innerText.trim())
+        .filter(txt => txt.endsWith("MB") || txt.endsWith("GB"))
     var h1 = document.querySelector("h1")
-    h1.innerText = h1.innerText + ` [${tds[0]}]`
+    h1.innerText = h1.innerText + ` [${arr[0]}]`
 }
 
