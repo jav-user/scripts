@@ -30,11 +30,13 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 console.log("imgSrc", img.src)
                 var id = dominio.trim()
                 var newSrc = imgPlugins[id] ? imgPlugins[id](img.src, link) : img.src
-                if (img.src != newSrc) {
+                if (imgPlugins[id]) {
                     console.log("newSrc: " + newSrc)
                     img.src = newSrc
                     img.style.maxWidth = "750px"
                     img.parentNode.href = newSrc
+                    var ref1 = Rarbg.collection("missingPlugins").doc(id)
+                    batch.delete(ref1, doc)
                 } else {
                     var ref1 = Rarbg.collection("missingPlugins").doc(id)
                     var doc = {
@@ -48,8 +50,8 @@ if (window.location.pathname.startsWith("/torrent/")) {
                     var ref2 = Rarbg.collection("imgPlugins").doc(id)
 
                     batch.set(ref1, doc)
-                    batch.set(ref2, {
-                        f: false
+                    batch.update(ref2, {
+                        hasf: false
                     })
                 }
             })
@@ -114,4 +116,6 @@ if (window.location.pathname.startsWith("/torrent/")) {
     }
 
 }
+
+
 
