@@ -30,15 +30,19 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 console.log("imgSrc", img.src)
                 var id = dominio.trim()
                 var newSrc = imgPlugins[id] ? imgPlugins[id](img.src, link) : img.src
+                var mPlug = Rarbg.collection("missingPlugins").doc(id)
+                var iPlug = Rarbg.collection("imgPlugins").doc(id)
                 if (imgPlugins[id]) {
                     console.log("newSrc: " + newSrc)
                     img.src = newSrc
                     img.style.maxWidth = "750px"
                     img.parentNode.href = newSrc
-                    var ref1 = Rarbg.collection("missingPlugins").doc(id)
-                    batch.delete(ref1)
+                    batch.delete(mPlug)
+                    batch.update(iPlug, {
+                        hasf: true
+                    })
                 } else {
-                    var ref1 = Rarbg.collection("missingPlugins").doc(id)
+             
                     var doc = {
                         page: window.location.href,
                         imgSrc: img.src,
@@ -47,10 +51,9 @@ if (window.location.pathname.startsWith("/torrent/")) {
                         dateStr: new Date().toString()
                     }
 
-                    var ref2 = Rarbg.collection("imgPlugins").doc(id)
 
-                    batch.set(ref1, doc)
-                    batch.update(ref2, {
+                    batch.set(mPlug, doc)
+                    batch.update(iPlug, {
                         hasf: false
                     })
                 }
