@@ -72,7 +72,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
     TorrentSize = arr[0]
 
 
-    h1.innerText = torrentName + ` [${torrentSize}]`
+    h1.innerText = TorrentName + ` [${TorrentSize}]`
 
     //TorrentPoster
     var tdPoster = Array.from(document.querySelectorAll("td"))
