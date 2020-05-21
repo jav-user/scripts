@@ -15,10 +15,12 @@ if (window.location.pathname.startsWith("/torrent/")) {
         .get()
         .then(q => {
             q.forEach(doc => {
-                imgPlugins[doc.id] = function(imgSrc, link) {
-                    var fn = doc.data().f
-                    console.log(doc.id, fn)
-                    return eval(fn)
+                var fn = doc.data().f
+                if (fn) {
+                    imgPlugins[doc.id] = function(imgSrc, link) {
+                        console.log(doc.id, fn)
+                        return eval(fn)
+                    }
                 }
             })
 
@@ -27,7 +29,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 var link = img.parentNode.href
                 console.log("imgSrc", img.src)
                 var id = dominio.trim()
-                var newSrc = imgPlugins[id] &&  imgPlugins[id].f ? imgPlugins[id](img.src, link) : img.src
+                var newSrc = imgPlugins[id] ? imgPlugins[id](img.src, link) : img.src
                 if (img.src != newSrc) {
                     console.log("newSrc: " + newSrc)
                     img.src = newSrc
@@ -43,13 +45,15 @@ if (window.location.pathname.startsWith("/torrent/")) {
                         dateStr: new Date().toString()
                     }
 
-                    var ref2= Rarbg.collection("imgPlugins").doc(id)
+                    var ref2 = Rarbg.collection("imgPlugins").doc(id)
 
                     batch.set(ref1, doc)
-                    batch.set(ref2, {f:false})
+                    batch.set(ref2, {
+                        f: false
+                    })
                 }
             })
-            console.log("imgPlugins",imgPlugins)
+            console.log("imgPlugins", imgPlugins)
             batch.commit()
         })
 
@@ -110,6 +114,4 @@ if (window.location.pathname.startsWith("/torrent/")) {
     }
 
 }
-
-
 
