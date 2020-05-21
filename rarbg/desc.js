@@ -1,4 +1,4 @@
-const rarbgImg={
+var rarbgImg={
     "22pixx.xyz": src => src.replace("/s/","/i/")
 }
 
