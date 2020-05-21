@@ -38,9 +38,12 @@ if (window.location.pathname.startsWith("/torrent/")) {
                     img.style.maxWidth = "750px"
                     img.parentNode.href = newSrc
                     batch.delete(mPlug)
-                    batch.update(iPlug, {
-                        hasf: true
-                    })
+                    try{
+                        batch.update(iPlug, {
+                            hasf: true
+                        })
+                    }catch(err){console.log("err",err)}
+                    
                 } else {
              
                     var doc = {
