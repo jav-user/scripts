@@ -38,11 +38,11 @@ if (window.location.pathname.startsWith("/torrent/")) {
                     img.style.maxWidth = "750px"
                     img.parentNode.href = newSrc
                     batch.delete(mPlug)
-                    try{
+                    
                         batch.update(iPlug, {
                             hasf: true
                         })
-                    }catch(err){console.log("err",err)}
+                    
                     
                 } else {
              
@@ -56,9 +56,11 @@ if (window.location.pathname.startsWith("/torrent/")) {
 
 
                     batch.set(mPlug, doc)
+                    try{
                     batch.update(iPlug, {
                         hasf: false
                     })
+                    }catch(err){console.log("err",err)}
                 }
             })
             console.log("imgPlugins", imgPlugins)
