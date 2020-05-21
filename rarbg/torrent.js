@@ -56,11 +56,11 @@ if (window.location.pathname.startsWith("/torrent/")) {
 
 
                     batch.set(mPlug, doc)
-                    try{
-                    batch.update(iPlug, {
+                    //try{
+                    batch.set(iPlug, {
                         hasf: false
                     })
-                    }catch(err){console.log("err",err)}
+                  //  }catch(err){console.log("err",err)}
                 }
             })
             console.log("imgPlugins", imgPlugins)
