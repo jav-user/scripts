@@ -32,7 +32,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 var newSrc = imgPlugins[id] ? imgPlugins[id](img.src, link) : img.src
                 var mPlug = Rarbg.collection("missingPlugins").doc(id)
                 var iPlug = Rarbg.collection("imgPlugins").doc(id)
-                if (imgPlugins[id]) {
+                if (img.src != newSrc) {
                     console.log("newSrc: " + newSrc)
                     img.src = newSrc
                     img.style.maxWidth = "750px"
