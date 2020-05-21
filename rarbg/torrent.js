@@ -57,9 +57,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
 
                     batch.set(mPlug, doc)
                     //try{
-                    batch.set(iPlug, {
-                        hasf: false
-                    })
+                    batch.set(iPlug, {hasf: false},{merge:true})
                   //  }catch(err){console.log("err",err)}
                 }
             })
