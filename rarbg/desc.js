@@ -1,13 +1,16 @@
 var imgPlugins = {}
-var missingPlugins = {}
+var batch = db.batch()
+    // var missingPlugins = {}
 
 Rarbg
-    .child("imgPlugins")
-    .once("value")
-    .then(s => {
-        s.forEach(sn => {
+    .collection("imgPlugins")
+    .get()
+    .then(q => {
+        q.forEach(doc => {
             imgPlugins[sn.key] = function(imgSrc, link) {
-                return eval(sn.val())
+                var fn = doc.data().f
+                console.log(doc.id, fn)
+                return eval(fn)
             }
         })
 
@@ -15,22 +18,27 @@ Rarbg
             var dominio = img.src.split("/")[2]
             var link = img.parentNode.href
             console.log("imgSrc", img.src)
-            var id = encrypt(dominio)
+            var id = dominio
             var newSrc = imgPlugins[id] ? imgPlugins[id](img.src, link) : img.src
             if (img.src != newSrc) {
                 console.log("newSrc: " + newSrc)
                 img.src = newSrc
                 img.parentNode.href = newSrc
             } else {
-                missingPlugins[id] = {
+                var ref = Rarbg.collection("missingPlugins").doc(id)
+                var doc = {
                     page: window.location.href,
                     imgSrc: img.src,
-                    link: link
+                    link: link,
+                    date: Date.now(),
+                    dateStr: new Date().toString()
                 }
+
+                batch.set(ref, doc)
             }
         })
 
-        Rarbg.child("missingPlugins").update(missingPlugins)
+        batch.commit()
 
     })
 
