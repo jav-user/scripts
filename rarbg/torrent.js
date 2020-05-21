@@ -36,7 +36,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
                     img.style.maxWidth = "750px"
                     img.parentNode.href = newSrc
                     var ref1 = Rarbg.collection("missingPlugins").doc(id)
-                    batch.delete(ref1, doc)
+                    batch.delete(ref1)
                 } else {
                     var ref1 = Rarbg.collection("missingPlugins").doc(id)
                     var doc = {
