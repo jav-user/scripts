@@ -2,6 +2,13 @@ if (window.location.pathname.startsWith("/torrent/")) {
 
     var imgPlugins = {}
     var batch = db.batch()
+    var TorrentName = null
+    var TorrentSize = null
+    var TorrentPoster = null
+    var clicked = false
+
+    //Iniciar
+
 
     Rarbg
         .collection("imgPlugins")
@@ -42,12 +49,61 @@ if (window.location.pathname.startsWith("/torrent/")) {
         })
 
 
+    // var trs = Array.from(table.children[0].querySelectorAll(":scope > tr"))
+    // trs.forEach(tr=>console.log(tr.children[0].innerText))
+
+    // var table = document.querySelectorAll("table.lista")[0]
+    // var trs = Array.from(table.children[0].querySelectorAll(":scope > tr"))
+    // var queryTD = function(q) {
+    //     return trs.filter(tr => tr.children[0].innerText.trim().toLowerCase().startsWith(q.toLowerCase()))[0].children[1]
+    // }
+
+
+    //TorrentName
+    var h1 = document.querySelector("h1")
+    TorrentName = h1.innerText
+
+    //TorrentSize
     var tds = document.querySelectorAll("table tr td.lista")
     var arr = Array
         .from(tds)
         .map(td => td.innerText.trim())
         .filter(txt => txt.endsWith("MB") || txt.endsWith("GB"))
-    var h1 = document.querySelector("h1")
-    h1.innerText = h1.innerText + ` [${arr[0]}]`
+    TorrentSize = arr[0]
+
+
+    h1.innerText = torrentName + ` [${torrentSize}]`
+
+    //TorrentPoster
+    var tdPoster = Array.from(document.querySelectorAll("td"))
+        .filter(td => td.innerText.trim().startsWith("Poster"))[0]
+
+    TorrentPoster = tdPoster.parentNode.querySelector("img").src
+
+    //MagnetOnClick
+    var as = document.querySelectorAll("a[href]")
+    var mgt = Array.from(as).filter(a => a.href.startsWith("magnet:"))[0]
+    var tor = Array.from(as).filter(a => a.href.endsWith(".torrent"))[0]
+
+    if (!clicked) {
+        mgt.onclick = function() {
+
+            var torrent = {
+                name: TorrentName,
+                size: TorrentSize,
+                url: window.location.href,
+                poster: TorrentPoster,
+                torrent: tor.href,
+                magnet: mgt.href,
+                date: Date.now(),
+                dateStr: new Date().toString(),
+            }
+            Rarbg.collection("Torrents").doc(`${TorrentName} [${TorrentSize}]`).set(torrent)
+            clicked = true
+        }
+
+    }
+
 }
+
 
