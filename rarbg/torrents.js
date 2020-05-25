@@ -27,5 +27,19 @@ if (window.location.pathname.startsWith("/torrents.php")) {
     for (var i = 0; i < 3; i++) {
         document.querySelector("body").append(img)
     }
+    
+    Array.from(document.querySelectorAll(".lista2t a")).filter(a=>a.href.includes("/torrent/"))
+        .forEach(a=>{
+            if(a.innerText.includes("ION10")) {
+                a.style.color="green"
+                a.style.fontSize="12px"
+            }else if ([
+                    "S01","S02","S03","S04","S05","S06","S07","S08","S09","S10",
+                    "S11","S12","S13","S14","S15","S16","S17","S18","S19","S20"
+                ].indexOf(a.innerText.split("."))!=-1){
+                a.style.color="purple"
+                a.style.fontSize="12px"
+            }
 
+      })
 }
