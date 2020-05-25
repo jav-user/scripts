@@ -1,4 +1,19 @@
 if (window.location.pathname.startsWith("/torrents.php")) {
+    
+     String.prototype.toByte=function(){
+     var str = this.toString()
+     var bytes=0
+     var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+     sizes.forEach((size,i)=>{
+        if(str.endsWith(size)){
+            bytes = str.replace(size,"").trim()*(Math.pow(1000,i))
+            return false
+        }
+     })
+        return bytes
+    }
+
+
 
     document.querySelectorAll(".lista2t a[title][onmouseover]").forEach((v) => {
         if (v.onmouseover) {
@@ -45,21 +60,24 @@ if (window.location.pathname.startsWith("/torrents.php")) {
             var size = a.parentNode
                          .parentNode
                          .children[3]
+            var bytes=size.innerText.toByte()
             
-            seasons().forEach(season=>{
-                if(a.innerText.includes("."+season+".")){
-                   a.style.color="purple"
-                   a.style.fontSize="12px"
-                   size.style.color="purple"
-                   size.style.fontWeight="bold"
-                }
-            })
+            if(bytes<"10GB".toByte()){
+                seasons().forEach(season=>{
+                    if(a.innerText.includes("."+season+".")){
+                       a.style.color="purple"
+                       a.style.fontSize="12px"
+                       size.style.color="purple"
+                       size.style.fontWeight="bold"
+                    }
+                })
             
             if(a.innerText.includes("ION10")) {
-                a.style.color="green"
-                a.style.fontSize="12px"
-                size.style.color="green"
-                size.style.fontWeight="bold"
+                    a.style.color="green"
+                    a.style.fontSize="12px"
+                    size.style.color="green"
+                    size.style.fontWeight="bold"
+                }
             }
 
       })
