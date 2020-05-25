@@ -42,21 +42,25 @@ if (window.location.pathname.startsWith("/torrents.php")) {
     Array.from(document.querySelectorAll(".lista2t a")).filter(a=>a.href.includes("/torrent/"))
         .forEach(a=>{
         
-            //var arr 
+            var size = a.parentNode
+                         .parentNode
+                         .children[3]
             
             seasons().forEach(season=>{
                 if(a.innerText.includes("."+season+".")){
                    a.style.color="purple"
                    a.style.fontSize="12px"
+                   size.style.color="purple"
+                   size.style.fontWeight="bold"
                 }
             })
             
             if(a.innerText.includes("ION10")) {
                 a.style.color="green"
                 a.style.fontSize="12px"
+                size.style.color="green"
+                size.style.fontWeight="bold"
             }
-                  //  "S01","S02","S03","S04","S05","S06","S07","S08","S09","S10",
-                    //"S11","S12","S13","S14","S15","S16","S17","S18","S19","S20"
 
       })
 }
