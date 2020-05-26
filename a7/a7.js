@@ -14,6 +14,7 @@ Array.from(document.querySelectorAll("#season a")).filter(a=>a.href.includes("/u
 				|| lang == "hungarian"
 				|| lang == "russian"
 				|| lang == "romanian"
+				|| lang == "greek"
 	
 	var condition_hearing = hearing!=""
 	
