@@ -17,11 +17,13 @@ Array.from(document.querySelectorAll("#season a")).filter(a=>a.href.includes("/u
 	var condition_hearing = hearing!=""
 	
 	if(condition_lang || condition_hearing){
-		var classes = tr.className.split(" ")
-		classes.push("sub_hide") 
-		classes=classes.filter((c,i,a)=>a.indexOf(c)==i)
-		tr.className = classes.join(" ")
-		console.log(tr.className)
+		//var classes = tr.className.split(" ")
+		//classes.push("sub_hide") 
+		//classes=classes.filter((c,i,a)=>a.indexOf(c)==i)
+		//tr.className = classes.join(" ")
+		//console.log(tr.className)
+		console.log(tr)
+		tr.remove()
 	}
 })
 
