@@ -76,7 +76,7 @@ if (window.location.pathname.startsWith("/torrents.php")) {
 
             if (!isSeason && bytes < "1GB".toByte()) {
                 a.style.color = "blue"
-                a.style.fontSize = "12px"
+               // a.style.fontSize = "12px"
                 size.style.color = "blue"
                 size.style.fontWeight = "bold"
 
