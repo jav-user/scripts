@@ -39,8 +39,8 @@ var hideSubs = function(){
 // }
 
 hideSubs()
-
-document.querySelectorAll("#sl button").forEach(bt => {
+var buttons = document.querySelectorAll("#sl button")
+buttons.forEach(bt => {
     var show = window.location.pathname.split("/")[2]
     var season = window.location.pathname.split("/")[3]
     var a = document.createElement("a")
@@ -50,7 +50,8 @@ document.querySelectorAll("#sl button").forEach(bt => {
     var parent = bt.parentNode
     bt.innerText = ""
     var button = document.createElement("button")
-    if(a.innerText==season) button.style.fontWeight="bold"
+    if(season && a.innerText==season) button.style.fontWeight="bold"
+	else if (!season && buttons.length==a.innerText) button.style.fontWeight="bold"
     button.append(a)
     bt.remove()
     parent.append(button)
