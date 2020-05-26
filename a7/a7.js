@@ -58,3 +58,5 @@ buttons.forEach(bt => {
         //parent.append(a)
     ///console.log(bt)
 })
+
+document.querySelectorAll("#season input[type=checkbox]").forEach(input=>{input.checked=true})
