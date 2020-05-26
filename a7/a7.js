@@ -22,11 +22,11 @@ Array.from(document.querySelectorAll("#season a")).filter(a=>a.href.includes("/u
 		//classes=classes.filter((c,i,a)=>a.indexOf(c)==i)
 		//tr.className = classes.join(" ")
 		//console.log(tr.className)
-		console.log(tr)
+//		console.log(tr)
 		tr.remove()
 	}
 })
-
+/*
 var subs_hidden = document.querySelectorAll(".sub_hide")
 var hideSubs = function(){
   subs_hidden.forEach(tag=>{tag.style.display="none"})
@@ -37,7 +37,7 @@ var showSubs=function(){
 }
 
 hideSubs()
-
+*/
 document.querySelectorAll("#sl button").forEach(bt => {
     var show = window.location.pathname.split("/")[2]
     var a = document.createElement("a")
@@ -51,5 +51,5 @@ document.querySelectorAll("#sl button").forEach(bt => {
     bt.remove()
     parent.append(button)
         //parent.append(a)
-    console.log(bt)
+    ///console.log(bt)
 })
