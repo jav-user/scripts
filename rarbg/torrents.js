@@ -61,24 +61,36 @@ if (window.location.pathname.startsWith("/torrents.php")) {
                 .parentNode
                 .children[3]
             var bytes = size.innerText.toByte()
+            var isSeason = false
 
-            if (bytes < "10GB".toByte()) {
-                seasons().forEach(season => {
-                    if (a.innerText.includes("." + season + ".")) {
-                        a.style.color = "purple"
-                        a.style.fontSize = "12px"
-                        size.style.color = "purple"
-                        size.style.fontWeight = "bold"
-                    }
-                })
 
-                if (a.innerText.includes("ION10")) {
-                    a.style.color = "green"
+            seasons().forEach(season => {
+                if (a.innerText.includes("." + season + ".") && bytes < "10GB".toByte()) {
+                    a.style.color = "purple"
                     a.style.fontSize = "12px"
-                    size.style.color = "green"
+                    size.style.color = "purple"
                     size.style.fontWeight = "bold"
+                    isSeason = true
                 }
+            })
+
+            if (!isSeason && bytes < "1GB".toByte()) {
+                a.style.color = "blue"
+                a.style.fontSize = "12px"
+                size.style.color = "blue"
+                size.style.fontWeight = "bold"
+
             }
+
+            if (a.innerText.includes("ION10")) {
+                a.style.color = "green"
+                a.style.fontSize = "12px"
+                size.style.color = "green"
+                size.style.fontWeight = "bold"
+            }
+
+
+
 
         })
 }
