@@ -29,3 +29,19 @@ var showSubs=function(){
 }
 
 hideSubs()
+
+document.querySelectorAll("#sl button").forEach(bt => {
+    var show = window.location.pathname.split("/")[2]
+    var a = document.createElement("a")
+    a.type = "button"
+    a.href = `${window.location.origin}/season/${show}/${bt.innerText}`
+    a.innerText = bt.innerText
+    var parent = bt.parentNode
+    bt.innerText = ""
+    var button = document.createElement("button")
+    button.append(a)
+    bt.remove()
+    parent.append(button)
+        //parent.append(a)
+    console.log(bt)
+})
