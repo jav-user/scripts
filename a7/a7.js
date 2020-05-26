@@ -26,3 +26,5 @@ var hideSubs = function(){
 var showSubs=function(){
   subs_hidden.forEach(tag=>{tag.style.display=""})
 }
+
+hideSubs()
