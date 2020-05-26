@@ -2,6 +2,7 @@ Array.from(document.querySelectorAll("#season a")).filter(a=>a.href.includes("/u
 	var tr = a.parentNode.parentNode
 	var lang = tr.children[3].innerText.toLowerCase().trim()
 	var hearing = tr.children[6].innerText.trim()
+	
 	//console.log()
 	var condition_lang =	lang=="dutch" 
 				|| lang == "french"
@@ -41,13 +42,15 @@ hideSubs()
 
 document.querySelectorAll("#sl button").forEach(bt => {
     var show = window.location.pathname.split("/")[2]
+    var season = window.location.pathname.split("/")[3]
     var a = document.createElement("a")
     a.type = "button"
     a.href = `${window.location.origin}/season/${show}/${bt.innerText}`
-    a.innerText = bt.innerText
+    a.innerText = bt.innerText.trim()
     var parent = bt.parentNode
     bt.innerText = ""
     var button = document.createElement("button")
+    if(a.innerText==season) button.style.fontWeight="bold"
     button.append(a)
     bt.remove()
     parent.append(button)
