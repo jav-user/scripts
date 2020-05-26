@@ -17,27 +17,28 @@ Array.from(document.querySelectorAll("#season a")).filter(a=>a.href.includes("/u
 	var condition_hearing = hearing!=""
 	
 	if(condition_lang || condition_hearing){
-		//var classes = tr.className.split(" ")
-		//classes.push("sub_hide") 
-		//classes=classes.filter((c,i,a)=>a.indexOf(c)==i)
-		//tr.className = classes.join(" ")
-		//console.log(tr.className)
-//		console.log(tr)
+		var classes = tr.className.split(" ")
+		classes.push("sub_hide") 
+		classes=classes.filter((c,i,a)=>a.indexOf(c)==i)
+		tr.className = classes.join(" ")
+// 		console.log(tr.className)
+// 		console.log(tr)
 		tr.remove()
 	}
 })
-/*
+
 var subs_hidden = document.querySelectorAll(".sub_hide")
 var hideSubs = function(){
-  subs_hidden.forEach(tag=>{tag.style.display="none"})
+   subs_hidden.forEach(tag=>{tag.remove()})
+//   subs_hidden.forEach(tag=>{tag.style.display="none"})
 }
 
-var showSubs=function(){
-  subs_hidden.forEach(tag=>{tag.style.display=""})
-}
+// var showSubs=function(){
+//   subs_hidden.forEach(tag=>{tag.style.display=""})
+// }
 
 hideSubs()
-*/
+
 document.querySelectorAll("#sl button").forEach(bt => {
     var show = window.location.pathname.split("/")[2]
     var a = document.createElement("a")
