@@ -3,12 +3,13 @@ Array.from(document.querySelectorAll("#season a")).filter(a=>a.href.includes("/u
 	var lang = tr.children[3].innerText.toLowerCase().trim()
 	var hearing = tr.children[6].innerText.trim()
 	//console.log()
-	var condition_lang = 	 lang=="dutch" 
-											|| lang=="french"
-											|| lang=="german"
-											|| lang=="italian"
-											|| lang.includes("portuguese")  
-	var condition_hearing = hearing==""
+	var condition_lang =	lang=="dutch" 
+				|| lang=="french"
+				|| lang=="german"
+				|| lang=="italian"
+				|| lang.includes("portuguese")  
+	var condition_hearing = hearing!=""
+	
 	if(condition_lang || condition_hearing){
 		var classes = tr.className.split(" ")
 		classes.push("sub_hide") 
