@@ -29,7 +29,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
             Lockr.set("imgPlugins", imgPlugins)
             doImages()
 
-            console.log("imgPlugins", imgPlugins)
+            console.log("imgPlugins", Lockr.get("imgPlugins"))
             batch.commit()
         })
         .catch(err => {
@@ -135,10 +135,15 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 dateStr: new Date().toString(),
             }
             Rarbg.collection("Torrents").doc(`${TorrentName} [${TorrentSize}]`).set(torrent)
-                .then(r => clicked = true)
+                .then(r => {
+                    clicked = true
+                    console.log("clicked")
+            })
                 // clicked = true
         }
 
+    }else{
+        console.log("Already clicked!!")
     }
 
 }
