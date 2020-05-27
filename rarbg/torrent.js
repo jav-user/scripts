@@ -20,8 +20,8 @@ if (window.location.pathname.startsWith("/torrent/")) {
 
             var connectedRef = firebase.database().ref(".info/connected");
             connectedRef.once("value", function(snap) {
-                console.log("Conected!!")
                 if (snap.val() === true) {
+                    console.log("Conected!!")
                     q.forEach(doc => {
                         var fn = doc.data().f
                         strPlugins[doc.id] = fn
