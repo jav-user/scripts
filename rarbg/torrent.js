@@ -19,6 +19,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
             var strPlugins = {}
 
             var connectedRef = firebase.database().ref(".info/connected");
+            connectedRef.set(true)
             connectedRef.once("value", function(snap) {
                 if (snap.val() === true) {
                     console.log("Conected!!")
