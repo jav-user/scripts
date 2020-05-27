@@ -1,11 +1,12 @@
 if (window.location.pathname.startsWith("/torrent/")) {
 
     var imgPlugins = {}
-    var batch = db.batch()
+
     var TorrentName = null
     var TorrentSize = null
     var TorrentPoster = null
     var clicked = false
+    var batch = db.batch()
 
     //Iniciar
 
@@ -14,6 +15,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
         .collection("imgPlugins")
         .get()
         .then(q => {
+
             q.forEach(doc => {
                 var fn = doc.data().f
                 if (fn) {
@@ -24,46 +26,63 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 }
             })
 
-            document.querySelectorAll("#description img").forEach(img => {
-                var dominio = img.src.split("/")[2]
-                var link = img.parentNode.href
-                console.log("imgSrc", img.src)
-                var id = dominio.trim()
-                var newSrc = imgPlugins[id] ? imgPlugins[id](img.src, link) : img.src
-                var mPlug = Rarbg.collection("missingPlugins").doc(id)
-                var iPlug = Rarbg.collection("imgPlugins").doc(id)
-                if (img.src != newSrc) {
-                    console.log("newSrc: " + newSrc)
-                    img.src = newSrc
-                    img.style.maxWidth = "750px"
-                    img.parentNode.href = newSrc
-                    batch.delete(mPlug)
-                    
-                        batch.update(iPlug, {
-                            hasf: true
-                        })
-                    
-                    
-                } else {
-             
-                    var doc = {
-                        page: window.location.href,
-                        imgSrc: img.src,
-                        link: link,
-                        date: Date.now(),
-                        dateStr: new Date().toString()
-                    }
+            Lockr.set("imgPlugins", imgPlugins)
+            doImages()
 
-
-                    batch.set(mPlug, doc)
-                    //try{
-                    batch.set(iPlug, {hasf: false},{merge:true})
-                  //  }catch(err){console.log("err",err)}
-                }
-            })
             console.log("imgPlugins", imgPlugins)
             batch.commit()
         })
+        .catch(err => {
+            console.log("err", err)
+            imgPlugins = Lockr.get("imgPlugins")
+            doImages(err)
+            console.log("imgPlugins", imgPlugins)
+            batch.commit()
+        })
+
+    var doImages = function(err) {
+        document.querySelectorAll("#description img").forEach(img => {
+            var dominio = img.src.split("/")[2]
+            var link = img.parentNode.href
+            console.log("imgSrc", img.src)
+            var id = dominio.trim()
+            var newSrc = imgPlugins[id] ? imgPlugins[id](img.src, link) : img.src
+            var mPlug = Rarbg.collection("missingPlugins").doc(id)
+            var iPlug = Rarbg.collection("imgPlugins").doc(id)
+            if (img.src != newSrc) {
+                console.log("newSrc: " + newSrc)
+                img.src = newSrc
+                img.style.maxWidth = "750px"
+                img.parentNode.href = newSrc
+                batch.delete(mPlug)
+
+                batch.update(iPlug, {
+                    hasf: true
+                })
+
+
+            } else {
+
+                var doc = {
+                    page: window.location.href,
+                    imgSrc: img.src,
+                    link: link,
+                    date: Date.now(),
+                    dateStr: new Date().toString()
+                }
+
+
+                batch.set(mPlug, doc)
+                    //try{
+                batch.set(iPlug, {
+                        hasf: false
+                    }, {
+                        merge: true
+                    })
+                    //  }catch(err){console.log("err",err)}
+            }
+        })
+    }
 
 
     // var trs = Array.from(table.children[0].querySelectorAll(":scope > tr"))
@@ -116,12 +135,10 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 dateStr: new Date().toString(),
             }
             Rarbg.collection("Torrents").doc(`${TorrentName} [${TorrentSize}]`).set(torrent)
-            clicked = true
+                .then(r => clicked = true)
+                // clicked = true
         }
 
     }
 
 }
-
-
-
