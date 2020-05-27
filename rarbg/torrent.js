@@ -18,40 +18,38 @@ if (window.location.pathname.startsWith("/torrent/")) {
 
             var strPlugins = {}
 
-            var connectedRef = firebase.database().ref(".info/connected");
-            //connectedRef.set(true)
-            connectedRef.once("value", function(snap) {
-                if (snap.val() === true) {
-                    console.log("Conected!!")
-                    q.forEach(doc => {
-                        var fn = doc.data().f
-                        strPlugins[doc.id] = fn
-                        if (fn) {
-                            imgPlugins[doc.id] = function(imgSrc, link) {
-                                console.log(doc.id, fn)
-                                return eval(fn)
-                            }
-                        }
-                    })
-                    Lockr.set("strPlugins", strPlugins)
-                    doImages()
-                    console.log("imgPlugins", imgPlugins)
-                    console.log("strPlugins", strPlugins)
-                    batch.commit()
-                } else {
-                    console.log("not connected");
-                    var strPlugins = Lockr.get("strPlugins")
-                    for (var id in strPlugins) {
-                        imgPlugins[id] = function(imgSrc, link) {
-                            return eval(strPlugins[id])
+
+            if (q.size) {
+                console.log("Conected!!")
+                q.forEach(doc => {
+                    var fn = doc.data().f
+                    strPlugins[doc.id] = fn
+                    if (fn) {
+                        imgPlugins[doc.id] = function(imgSrc, link) {
+                            console.log(doc.id, fn)
+                            return eval(fn)
                         }
                     }
-                    doImages()
-                    console.log("imgPlugins", imgPlugins)
-                    console.log("strPlugins", strPlugins)
-                    batch.commit()
+                })
+                Lockr.set("strPlugins", strPlugins)
+                doImages()
+                console.log("imgPlugins", imgPlugins)
+                console.log("strPlugins", strPlugins)
+                batch.commit()
+            } else {
+                console.log("not connected");
+                var strPlugins = Lockr.get("strPlugins")
+                for (var id in strPlugins) {
+                    imgPlugins[id] = function(imgSrc, link) {
+                        return eval(strPlugins[id])
+                    }
                 }
-            });
+                doImages()
+                console.log("imgPlugins", imgPlugins)
+                console.log("strPlugins", strPlugins)
+                batch.commit()
+            }
+
 
 
 
