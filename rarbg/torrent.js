@@ -21,11 +21,11 @@ if (window.location.pathname.startsWith("/torrent/")) {
 
             if (q.size) {
                 console.log("Conected!!")
-                document.querySelector("h1").style.color="green"
+                document.querySelector("h1").style.color = "green"
                 q.forEach(doc => {
                     var fn = doc.data().f
-                    strPlugins[doc.id] = fn
                     if (fn) {
+                        strPlugins[doc.id] = fn
                         imgPlugins[doc.id] = function(imgSrc, link) {
                             console.log(doc.id, fn)
                             return eval(fn)
@@ -39,11 +39,13 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 batch.commit()
             } else {
                 console.log("not connected");
-                document.querySelector("h1").style.color="purple"
+                document.querySelector("h1").style.color = "purple"
                 var strPlugins = Lockr.get("strPlugins")
                 for (var id in strPlugins) {
+                    var fn = strPlugins[id]
                     imgPlugins[id] = function(imgSrc, link) {
-                        return eval(strPlugins[id])
+                        console.log(id, fn)
+                        return eval(fn)
                     }
                 }
                 doImages()
