@@ -16,25 +16,34 @@ if (window.location.pathname.startsWith("/torrent/")) {
         .get()
         .then(q => {
 
+            var strPlugins = {}
             q.forEach(doc => {
                 var fn = doc.data().f
                 if (fn) {
                     imgPlugins[doc.id] = function(imgSrc, link) {
                         console.log(doc.id, fn)
+                        strPlugins[doc.id] = fn
                         return eval(fn)
                     }
                 }
             })
 
-            Lockr.set("imgPlugins", imgPlugins)
+            Lockr.set("strPlugins", strPlugins)
             doImages()
 
-            console.log("imgPlugins", Lockr.get("imgPlugins"))
+            console.log("imgPlugins", imgPlugins)
             batch.commit()
         })
         .catch(err => {
             console.log("err", err)
-            imgPlugins = Lockr.get("imgPlugins")
+            var strPlugins = Lockr.get("strPlugins")
+            for (var id in strPlugins) {
+                imgPlugins[id] = function(imgSrc, link) {
+                    return eval(strPlugins[id])
+                }
+            }
+
+            // imgPlugins = Lockr.get("imgPlugins")
             doImages(err)
             console.log("imgPlugins", imgPlugins)
             batch.commit()
@@ -121,29 +130,33 @@ if (window.location.pathname.startsWith("/torrent/")) {
     var mgt = Array.from(as).filter(a => a.href.startsWith("magnet:"))[0]
     var tor = Array.from(as).filter(a => a.href.endsWith(".torrent"))[0]
 
-    if (!clicked) {
-        mgt.onclick = function() {
+    mgt.onclick = function() {
 
-            var torrent = {
-                name: TorrentName,
-                size: TorrentSize,
-                url: window.location.href,
-                poster: TorrentPoster,
-                torrent: tor.href,
-                magnet: mgt.href,
-                date: Date.now(),
-                dateStr: new Date().toString(),
-            }
+        var torrent = {
+            name: TorrentName,
+            size: TorrentSize,
+            url: window.location.href,
+            poster: TorrentPoster,
+            torrent: tor.href,
+            magnet: mgt.href,
+            date: Date.now(),
+            dateStr: new Date().toString(),
+        }
+
+        if (!clicked) {
             Rarbg.collection("Torrents").doc(`${TorrentName} [${TorrentSize}]`).set(torrent)
                 .then(r => {
                     clicked = true
                     console.log("clicked")
-            })
-                // clicked = true
+                })
+
+        } else {
+            console.log("Already clicked!!")
         }
 
-    }else{
-        console.log("Already clicked!!")
+        // clicked = true
     }
+
+
 
 }
