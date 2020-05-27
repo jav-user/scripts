@@ -19,10 +19,10 @@ if (window.location.pathname.startsWith("/torrent/")) {
             var strPlugins = {}
             q.forEach(doc => {
                 var fn = doc.data().f
+                strPlugins[doc.id] = fn
                 if (fn) {
                     imgPlugins[doc.id] = function(imgSrc, link) {
                         console.log(doc.id, fn)
-                        strPlugins[doc.id] = fn
                         return eval(fn)
                     }
                 }
