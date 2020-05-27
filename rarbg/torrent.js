@@ -45,7 +45,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
                             return eval(strPlugins[id])
                         }
                     }
-                    doImages(err)
+                    doImages()
                     console.log("imgPlugins", imgPlugins)
                     console.log("strPlugins", strPlugins)
                     batch.commit()
