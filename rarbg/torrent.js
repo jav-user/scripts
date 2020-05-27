@@ -30,8 +30,8 @@ if (window.location.pathname.startsWith("/torrent/")) {
 
             Lockr.set("strPlugins", strPlugins)
             doImages()
-
             console.log("imgPlugins", imgPlugins)
+            console.log("strPlugins", strPlugins)
             batch.commit()
         })
         .catch(err => {
@@ -46,6 +46,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
             // imgPlugins = Lockr.get("imgPlugins")
             doImages(err)
             console.log("imgPlugins", imgPlugins)
+            console.log("strPlugins", strPlugins)
             batch.commit()
         })
 
