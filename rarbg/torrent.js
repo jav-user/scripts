@@ -21,6 +21,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
 
             if (q.size) {
                 console.log("Conected!!")
+                document.querySelector("h1").style.color="blue"
                 q.forEach(doc => {
                     var fn = doc.data().f
                     strPlugins[doc.id] = fn
@@ -38,6 +39,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 batch.commit()
             } else {
                 console.log("not connected");
+                document.querySelector("h1").style.color="red"
                 var strPlugins = Lockr.get("strPlugins")
                 for (var id in strPlugins) {
                     imgPlugins[id] = function(imgSrc, link) {
