@@ -165,6 +165,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 .then(r => {
                     clicked = true
                     mgt.parentNode.style.color="green"
+                    console.log(mgt.parentNode)
                     console.log("clicked")
                 })
 
