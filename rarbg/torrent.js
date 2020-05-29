@@ -33,9 +33,10 @@ if (window.location.pathname.startsWith("/torrent/")) {
                     }
                 })
                 Lockr.set("strPlugins", strPlugins)
-                doImages()
+                
                 console.log("imgPlugins", imgPlugins)
                 console.log("strPlugins", strPlugins)
+                doImages()
                 batch.commit()
             } else {
                 console.log("not connected");
@@ -48,9 +49,10 @@ if (window.location.pathname.startsWith("/torrent/")) {
                         return eval(fn)
                     }
                 }
-                doImages()
+                
                 console.log("imgPlugins", imgPlugins)
                 console.log("strPlugins", strPlugins)
+                doImages()
                 batch.commit()
             }
 
