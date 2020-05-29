@@ -162,6 +162,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
             Rarbg.collection("Torrents").doc(`${TorrentName} [${TorrentSize}]`).set(torrent)
                 .then(r => {
                     clicked = true
+                    mgt.parent.style.color="green"
                     console.log("clicked")
                 })
 
