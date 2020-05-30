@@ -29,6 +29,7 @@ if (window.location.pathname.startsWith("/torrents.php")) {
             poster = url.replace("/static/over/","/posters2/${num}/")
                         .replace("/over_opt.","/poster_opt.")
                         .replace("_small.","_banner_optimized.")
+            console.log("poster", poster)
         
                 //   console.log("url",url)
 //             var poster = url.split("/")
