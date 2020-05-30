@@ -4,12 +4,12 @@ const _nes = function () {
         return this.sort(() => 0.5 - Math.random());
     };
 
-    x.addScript = function (src, id) {
+    x.addScript = function (src, id, delay) {
         var jq = document.createElement("script");
         jq.id = id;
         jq.src = src + "?var=" + x.randomBetween(100, 1000);
         var head = document.querySelector("head");
-        if (!head.querySelector(`script[src="${src}"]`)) head.appendChild(jq);
+        if (!head.querySelector(`script[src="${src}"]`)) setTimeout(()=>{head.appendChild(jq)},delay*1000)
     };
 
     x.orderObj = function (obj) {
