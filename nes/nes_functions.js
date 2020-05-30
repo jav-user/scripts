@@ -5,6 +5,7 @@ const _nes = function () {
     };
 
     x.addScript = function (src, id, delay) {
+        if(!delay) delay = 0
         var jq = document.createElement("script");
         jq.id = id;
         jq.src = src + "?var=" + x.randomBetween(100, 1000);
