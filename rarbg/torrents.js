@@ -24,11 +24,16 @@ if (window.location.pathname.startsWith("/torrents.php")) {
             td.align = "center"
             var img = v.parentNode.parentNode.querySelector("img")
             img.src = url
+            var poster = url
+            var num = url.split("/")[5] ? poster.split("/")[5].substr(0,1) : ""
+            poster = url.replace("/static/over/","/poster2/${num}/")
+                        .replace("/over_opt.","/poster_opt.")
+        
                 //   console.log("url",url)
-            var poster = url.split("/")
-            poster[3] = 'posters2'
-            poster[4] = poster[5] ? poster[5].substr(0, 1) : ""
-            poster = poster.join("/")
+//             var poster = url.split("/")
+//             poster[3] = 'posters2'
+//             poster[4] = poster[5] ? poster[5].substr(0, 1) : ""
+//             poster = poster.join("/")
             v.onmouseover = function() {
                 return overlib(`<img style="max-height:500px" src="${poster}" border=0 onerror="this.src='${url}'"/>`)
             }
