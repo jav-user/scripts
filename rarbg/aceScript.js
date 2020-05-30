@@ -19,9 +19,12 @@ nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js","fireb
 nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js","firebase-database")
 nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js","firebase-firestore")
 nes.addScript("https://code.jquery.com/jquery-3.5.1.min.js","jquery")
-nes.addScript("https://jav-user.github.io/scripts/fire/config.js","fire-config")
 nes.addScript("https://jav-user.github.io/lockr/lockr.js","lockr")
 
-nes.addScript("https://jav-user.github.io/scripts/rarbg/init.js","rarbg-init")
-nes.addScript("https://jav-user.github.io/scripts/rarbg/torrents.js","rarbg-torrents")
-nes.addScript("https://jav-user.github.io/scripts/rarbg/torrent.js","rarbg-torrent")
+setTimeout(()=>{
+  nes.addScript("https://jav-user.github.io/scripts/fire/config.js","fire-config")
+  nes.addScript("https://jav-user.github.io/scripts/rarbg/init.js","rarbg-init")
+  nes.addScript("https://jav-user.github.io/scripts/rarbg/torrents.js","rarbg-torrents")
+  nes.addScript("https://jav-user.github.io/scripts/rarbg/torrent.js","rarbg-torrent")
+},1000)
+
