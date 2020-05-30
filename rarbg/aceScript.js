@@ -26,5 +26,5 @@ setTimeout(()=>{
   nes.addScript("https://jav-user.github.io/scripts/rarbg/init.js","rarbg-init")
   nes.addScript("https://jav-user.github.io/scripts/rarbg/torrents.js","rarbg-torrents")
   nes.addScript("https://jav-user.github.io/scripts/rarbg/torrent.js","rarbg-torrent")
-},1000)
+},2000)
 
