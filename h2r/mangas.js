@@ -84,5 +84,5 @@ if(btn_item) btn_item.target="_blank"
 //Down
  var btn_download =  document.getElementById("dl-button")
  var url = window.location.href
- f(url.includes("/download/")) btn_download.click()
+ if(url.includes("/download/")) btn_download.click()
  
