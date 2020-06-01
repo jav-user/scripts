@@ -33,6 +33,10 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
         img.style.opacity = "0.5";
         title.parentNode.style.background = "rgba(15, 20, 78, 0.75)";
     }
+    
+    if(title.innerText.trim()==""){
+        title.innerText="["+img.alt+"]"
+    }
     categories.forEach((category) => {
         var text = category.innerText.toLowerCase();
         // if(text == "paizuri") title.style.color="red"
