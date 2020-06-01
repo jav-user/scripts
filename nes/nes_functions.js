@@ -4,7 +4,7 @@ const _nes = function () {
         return this.sort(() => 0.5 - Math.random());
     };
     
-    String.prototype.copy=()=>{
+    String.prototype.copy = function(){
         var vm =this.toString()  
         console.log("string... ", vm)
         var tempInput = document.createElement("input");
