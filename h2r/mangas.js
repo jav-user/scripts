@@ -39,8 +39,14 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
     }
     item.title = title.innerText
     
-    document.querySelectorAll(".overlay-button a").forEach(a=>a.target="_blank")
-    document.querySelectorAll("a.title").forEach(a=>a.target="_blank")
+    document.querySelectorAll(".overlay-button a").forEach(a=>
+                                                  //         a.target="_blank"
+                                                           a.onclick="window.open('#','_blank');window.open(this.href,'_self');"
+                                                          )
+    document.querySelectorAll("a.title").forEach(a=>
+                                                // a.target="_blank"
+                                                 a.onclick="window.open('#','_blank');window.open(this.href,'_self');"
+                                                )
     
     categories.forEach((category) => {
         var text = category.innerText.toLowerCase();
