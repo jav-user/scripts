@@ -44,7 +44,8 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
     
     document.querySelectorAll(".overlay-button a").forEach(a=>
                                                            a.target="_blank"
-                                                        //   a.onclick=wopen                                                          )
+                                                        //   a.onclick=wopen  
+                                                          )
     document.querySelectorAll("a.title").forEach(a=>
                                                 a.target="_blank"
                                                  //a.onclick=wopen
