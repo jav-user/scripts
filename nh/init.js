@@ -1,1 +1,1 @@
-var Rarbg = db.collection("javuser").doc("nh")
+var Nh = db.collection("javuser").doc("Nh")
