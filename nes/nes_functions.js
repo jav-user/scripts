@@ -3,6 +3,17 @@ const _nes = function () {
     Array.prototype.sortRandom = function () {
         return this.sort(() => 0.5 - Math.random());
     };
+    
+    String.prototype.copy=()=>{
+        var vm =this.toString()         
+        var tempInput = document.createElement("input");
+        tempInput.value = vm;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        return true
+    }
 
     x.addScript = function (src, id, delay) {
         if(!delay) delay = 0
