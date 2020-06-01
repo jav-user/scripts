@@ -77,25 +77,31 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
 });
 
 
-//Manga
-
-var btns_circle = document.querySelectorAll("a.btn-circle")
-
-btns_circle.forEach((btn,i)=>{
-    btn.target="_blank"
-    setTimeout(()=>{
-        btn.click()
-    },(i+1)*1000)
-})
-
 //Down
  var btn_download =  document.getElementById("dl-button")
  var url = window.location.href
  if(url.includes("/download/")) btn_download.click()
 
 
-var bookmark = document.querySelectorAll(".dropdown-menu .usrBookmark")[0]
-if(bookmark) bookmark.click()
+//Manga
+var clicked = false
+
+var openDownloads = function(){
+    var btns_circle = document.querySelectorAll("a.btn-circle")
+
+    btns_circle.forEach((btn,i)=>{
+        btn.target="_blank"
+        setTimeout(()=>{
+            btn.click()
+        },(i+1)*1000)
+    })
+}
+
+
+var clickBookmark=function(){
+    var bookmark = document.querySelectorAll(".dropdown-menu .usrBookmark")[0]
+    if(bookmark) bookmark.click()
+}
 
 var lastFile = document.querySelectorAll(".nav-chapters .text-muted small")[0];
 if (lastFile) {
@@ -121,8 +127,15 @@ if (lastFile) {
     var toCopy = `${cpt}:${dt}`;
 
     h3.innerText = `DISCUSSION: ${toCopy}`;
-    document.querySelector("body").onclick = () => {
-        toCopy.copy();
+    var bookmark = document.querySelectorAll(".dropdown-menu .usrBookmark")[0]
+    bookmark.onclick = () => {
+        if(!clicked){
+             toCopy.copy();
+             //clickBookmarks()
+             openDownloads()
+             clicked = true
+        }
+       
     };
 }
 
