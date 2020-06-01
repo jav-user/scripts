@@ -52,11 +52,16 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
     
     categories.forEach((category) => {
         var text = category.innerText.toLowerCase();
+        var rose = "#E8ADAA"
+        var green = "#0ED228"
+        var whiteblue = "#00aae4"
+        var yellow = "yellow"
+        var orange = "orange"
         // if(text == "paizuri") title.style.color="red"
         // if (text == "censored") title.style.color = "#00aae4"; //whiteblue
-        if (text == "censored") title.style.color = "orange"
-        if (text == "partial censorship") title.style.color =  "yellow";
-        if (text == "un-censored") title.style.color =   "#0ED228"; //green
+        if (text == "censored") title.style.color = rose
+        if (text == "partial censorship") title.style.color =  orange
+        if (text == "un-censored") title.style.color = yellow
 
         if (whiteList.indexOf(text) != -1) {
             category.style.color = "yellow";
