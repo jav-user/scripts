@@ -46,10 +46,12 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
 
         if (whiteList.indexOf(text) != -1) {
             category.style.color = "yellow";
+            category.style.fontWeight="bold";
         }
 
         if (blackList.indexOf(text) != -1) {
             category.style.color = "red";
+            category.style.fontWeight="bold";
         }
     });
 });
