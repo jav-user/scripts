@@ -79,8 +79,15 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
 
 //Manga
 
-var btn_item = document.querySelector("a.btn-circle")
-if(btn_item) btn_item.target="_blank"
+var btns_circle = document.querySelectorAll("a.btn-circle")
+
+btns_circle.forEach((btn,i)=>{
+    btn.target="_blank"
+    setTimeout(()=>{
+        btn.click()
+    },(i+1)*1000)
+})
+
 //Down
  var btn_download =  document.getElementById("dl-button")
  var url = window.location.href
