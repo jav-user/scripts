@@ -14,6 +14,6 @@ nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js","
 nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js","firebase-firestore",0.5)
 
 nes.addScript("https://jav-user.github.io/scripts/fire/config.js","fire-config",1)
-nes.addScript("https://jav-user.github.io/scripts/rarbg/init.js","nh-init",1.5)
-nes.addScript("https://jav-user.github.io/scripts/rarbg/torrents.js","nh-mangas",2)
-nes.addScript("https://jav-user.github.io/scripts/rarbg/torrent.js","ng-manga",2)
+nes.addScript("https://jav-user.github.io/scripts/nh/init.js","nh-init",1.5)
+nes.addScript("https://jav-user.github.io/scripts/nh/mangas.js","nh-mangas",2)
+nes.addScript("https://jav-user.github.io/scripts/nh/manga.js","ng-manga",2)
