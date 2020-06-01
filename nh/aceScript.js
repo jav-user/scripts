@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name Rarbg
-// @namespace Rarbg
-// @match *://rarbgweb.org/*
+// @name Nh
+// @namespace Nh
+// @match *://nhentai.net/*
 // @grant none
 // @require https://jav-user.github.io/scripts/nes/nes_functions.js?a=2
 // @require https://jav-user.github.io/scripts/nh/aceScript.js?a=1
