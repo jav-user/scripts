@@ -39,13 +39,15 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
     }
     item.title = title.innerText
     
+    var wopen = "window.open(window.location.href,'_blank');window.open(this.href,'_self');"
+
+    
     document.querySelectorAll(".overlay-button a").forEach(a=>
                                                   //         a.target="_blank"
-                                                           a.onclick="window.open('#','_blank');window.open(this.href,'_self');"
-                                                          )
+                                                           a.onclick=wopen                                                          )
     document.querySelectorAll("a.title").forEach(a=>
                                                 // a.target="_blank"
-                                                 a.onclick="window.open('#','_blank');window.open(this.href,'_self');"
+                                                 a.onclick=wopen
                                                 )
     
     categories.forEach((category) => {
