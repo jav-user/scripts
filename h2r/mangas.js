@@ -38,6 +38,9 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
         title.innerText="["+img.alt+"]"
     }
     item.title = title.innerText
+    
+    document.querySelectorAll(".overlay-button a").forEach(a=>a.target="_blank")
+    
     categories.forEach((category) => {
         var text = category.innerText.toLowerCase();
         // if(text == "paizuri") title.style.color="red"
@@ -56,3 +59,8 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
         }
     });
 });
+
+
+//Manga
+
+document.querySelector("a.btn-circle").target="_blank"
