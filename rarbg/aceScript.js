@@ -3,15 +3,8 @@
 // @namespace Rarbg
 // @match *://rarbgweb.org/*
 // @grant none
-// @require https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js
-// @require https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js
-// @require https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js
-// @require https://code.jquery.com/jquery-3.5.1.min.js
-// @require https://jav-user.github.io/scripts/fire/config.js?a=12
-// @require https://jav-user.github.io/lockr/lockr.js?a=1
-// @require https://jav-user.github.io/scripts/rarbg/init.js?a=12
-// @require https://jav-user.github.io/scripts/rarbg/torrents.js?a=true
-// @require https://jav-user.github.io/scripts/rarbg/torrent.js?a=35
+// @require https://jav-user.github.io/scripts/nes/nes_functions.js?a=2
+// @require https://jav-user.github.io/scripts/rarbg/aceScript.js?a=1
 // ==/UserScript==
 
 nes.addScript("https://code.jquery.com/jquery-3.5.1.min.js","jquery")
