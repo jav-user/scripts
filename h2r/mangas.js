@@ -92,4 +92,35 @@ btns_circle.forEach((btn,i)=>{
  var btn_download =  document.getElementById("dl-button")
  var url = window.location.href
  if(url.includes("/download/")) btn_download.click()
+
+
+var lastFile = document.querySelectorAll(".nav-chapters .text-muted small")[0];
+if (lastFile) {
+    var lastDate = lastFile.innerText;
+    var dt = lastDate
+        .split("]")[1]
+        .replace("about", "")
+        .replace("ago", "")
+        .replace("s", "")
+        .replace("minute", "m")
+        .replace("hour", "h")
+        .replace("day", "d")
+        .replace("week", "W")
+        .replace("month", "M")
+        .replace("year", "Y")
+        .replace(/ /g, "");
+
+    var cpt = lastFile.parentNode.parentNode.innerText.split(" ")[0];
+
+    var h3 = Array.from(document.querySelectorAll(".block-title")).filter(
+        (h3) => h3.innerText.trim() == "DISCUSSION"
+    )[0];
+    var toCopy = `${cpt}:${dt}`;
+
+    h3.innerText = `DISCUSSION: ${toCopy}`;
+    document.querySelector("body").onclick = () => {
+        toCopy.copy();
+    };
+}
+
  
