@@ -81,6 +81,11 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
 
 document.querySelector("a.btn-circle").target="_blank"
 //Down
-
-var url = window.location.href
-if(url.includes("/download/")) setTimeout(()=>{document.getElementById("dl-button").click()},3*1000)
+setTimeout(()=>{
+    var url = window.location.href
+    var button =  document.getElementById("dl-button")
+    button.innerText=url
+    if(url.includes("/download/")) {
+       button.click()
+    }
+   },3*1000)
