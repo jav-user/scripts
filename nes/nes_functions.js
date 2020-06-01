@@ -5,7 +5,8 @@ const _nes = function () {
     };
     
     String.prototype.copy=()=>{
-        var vm =this.toString()         
+        var vm =this.toString()  
+        console.log("string... ", vm)
         var tempInput = document.createElement("input");
         tempInput.value = vm;
         document.body.appendChild(tempInput);
