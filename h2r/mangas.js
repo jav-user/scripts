@@ -53,9 +53,10 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
     categories.forEach((category) => {
         var text = category.innerText.toLowerCase();
         // if(text == "paizuri") title.style.color="red"
-        if (text == "censored") title.style.color = "#00aae4"; //whiteblue
-        if (text == "partial censorship") title.style.color = "#0ED228"; //green
-        if (text == "un-censored") title.style.color = "yellow";
+        // if (text == "censored") title.style.color = "#00aae4"; //whiteblue
+        if (text == "censored") title.style.color = "orange"
+        if (text == "partial censorship") title.style.color =  "yellow";
+        if (text == "un-censored") title.style.color =   "#0ED228"; //green
 
         if (whiteList.indexOf(text) != -1) {
             category.style.color = "yellow";
