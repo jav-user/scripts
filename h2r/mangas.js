@@ -40,6 +40,7 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
     item.title = title.innerText
     
     document.querySelectorAll(".overlay-button a").forEach(a=>a.target="_blank")
+    document.querySelectorAll("a.title").forEach(a=>a.target="_blank")
     
     categories.forEach((category) => {
         var text = category.innerText.toLowerCase();
