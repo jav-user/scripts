@@ -37,7 +37,7 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
     if(title.innerText.trim()==""){
         title.innerText="["+img.alt+"]"
     }
-    item.title = title
+    item.title = title.innerText
     categories.forEach((category) => {
         var text = category.innerText.toLowerCase();
         // if(text == "paizuri") title.style.color="red"
