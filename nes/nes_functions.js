@@ -19,7 +19,17 @@ const _nes = function () {
         document.body.removeChild(tempInput);
         return true
     }
-
+    x._get=function(){
+        var search = window.location.search.split("?")[1]
+        var data = {}
+        if(!search) return data
+        search.split("&").forEach(s=>{
+            var key = s.split("=")[0]
+            var value = s.split("=")[1]
+            data[key]=value
+        })
+        return data
+    }
     x.addScript = function (src, id, delay) {
         if(!delay) delay = 0
         var jq = document.createElement("script");
