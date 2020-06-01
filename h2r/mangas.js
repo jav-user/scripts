@@ -37,7 +37,7 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
         var text = category.innerText.toLowerCase();
         // if(text == "paizuri") title.style.color="red"
         if (text == "censored") title.style.color = "#00aae4";
-        if (text == "partial censorship") title.style.color = "green";
+        if (text == "partial censorship") title.style.color = "#58D68D";
         if (text == "un-censored") title.style.color = "yellow";
 
         if (whiteList.indexOf(text) != -1) {
