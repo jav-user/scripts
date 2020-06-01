@@ -4,6 +4,10 @@ const _nes = function () {
         return this.sort(() => 0.5 - Math.random());
     };
     
+    Array.prototype.unique = function(){
+        return this.filter((el,i,a)=>a.indexOf(el)==i)
+    }
+    
     String.prototype.copy = function(){
         var vm =this.toString()  
         console.log("string... ", vm)
