@@ -94,6 +94,9 @@ btns_circle.forEach((btn,i)=>{
  if(url.includes("/download/")) btn_download.click()
 
 
+var bookmark = document.querySelectorAll(".dropdown-menu .usrBookmark")[0]
+if(bookmark) bookmark.click()
+
 var lastFile = document.querySelectorAll(".nav-chapters .text-muted small")[0];
 if (lastFile) {
     var lastDate = lastFile.innerText;
