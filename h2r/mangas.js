@@ -80,3 +80,7 @@ document.querySelectorAll(".book-grid-item").forEach((item) => {
 //Manga
 
 document.querySelector("a.btn-circle").target="_blank"
+//Down
+
+var url = window.location.href
+if(url.includes("/download/")) setTimeout(()=>{document.getElementById("dl-button").click()},3*1000)
