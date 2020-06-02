@@ -32,7 +32,7 @@ var isDownload = path.startsWith("/download/");
 var isManga = !isMangas && !isDownload && !path.startsWithSome(pathsNoManga);
 
 nes.addScript('https://code.jquery.com/jquery-3.5.1.min.js','jq')
-nes.addScript("https://jav-user.github.io/scripts/nes/nes_functions.js","jq")
+nes.addScript("https://jav-user.github.io/scripts/nes/nes_functions.js","nes")
 
 if(isMangas) nes.addScript("https://jav-user.github.io/scripts/h2r/mangas.js","h2r-mangas",1);	
 
