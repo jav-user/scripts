@@ -13,17 +13,17 @@ const _nes = function () {
         });
     };
 
-    Array.prototype.includes = function (q, isOr) {
-        var vm = this;
-        var sw = !isOr;
-        var Q = Array.isArray(q) ? q : [q];
-        Q.forEach((q) => {
-            let includes = vm.some((val) => (val + "").includes(q));
-            sw = isOr ? sw || includes : sw & includes;
-        });
+    // Array.prototype.includes = function (q, isOr) {
+    //     var vm = this;
+    //     var sw = !isOr;
+    //     var Q = Array.isArray(q) ? q : [q];
+    //     Q.forEach((q) => {
+    //         let includes = vm.some((val) => (val + "").includes(q));
+    //         sw = isOr ? sw || includes : sw & includes;
+    //     });
 
-        return sw;
-    };
+    //     return sw;
+    // };
 
     Array.prototype.includesEvery = function (q) {
         var vm = this;
@@ -51,6 +51,26 @@ const _nes = function () {
 
     Array.prototype.sortRandom = function () {
         return this.sort(() => 0.5 - Math.random());
+    };
+
+    Array.prototype.toLowerCase = function () {
+        return this.map((el) =>
+            typeof el == "string" ? el.toLowerCase() : el
+        );
+    };
+
+    Array.prototype.toUpperCase = function () {
+        return this.map((el) =>
+            typeof el == "string" ? el.toUpperCase() : el
+        );
+    };
+
+    Array.prototype.toText = function () {
+        return this.map((el) => el + "");
+    };
+
+    Array.prototype.trim = function () {
+        return this.map((el) => (typeof el == "string" ? el.trim() : el));
     };
 
     Array.prototype.unique = function () {
