@@ -25,6 +25,30 @@ const _nes = function () {
         return sw;
     };
 
+    Array.prototype.includesEvery = function (q) {
+        var vm = this;
+        var sw = true;
+        var Q = Array.isArray(q) ? q : [q];
+        Q.forEach((q) => {
+            let includes = vm.some((val) => (val + "").includes(q));
+            sw = sw & includes;
+        });
+
+        return sw;
+    };
+
+    Array.prototype.includesSome = function (q) {
+        var vm = this;
+        var sw = false;
+        var Q = Array.isArray(q) ? q : [q];
+        Q.forEach((q) => {
+            let includes = vm.some((val) => (val + "").includes(q));
+            sw = sw || includes;
+        });
+
+        return sw;
+    };
+
     Array.prototype.sortRandom = function () {
         return this.sort(() => 0.5 - Math.random());
     };
@@ -33,13 +57,13 @@ const _nes = function () {
         return this.filter((el, i, a) => a.indexOf(el) == i);
     };
 
-    String.prototype.includeEvery = function (arr) {
+    String.prototype.includesEvery = function (arr) {
         let str = this.toString().toLowerCase();
         let includes = (el) => str.includes((el + "").toLowerCase());
         return arr.every(includes);
     };
 
-    String.prototype.includeSome = function (arr) {
+    String.prototype.includesSome = function (arr) {
         let str = this.toString().toLowerCase();
         let includes = (el) => str.includes((el + "").toLowerCase());
         return arr.some(includes);
