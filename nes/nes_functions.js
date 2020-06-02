@@ -89,6 +89,18 @@ const _nes = function () {
         return arr.some(includes);
     };
 
+     String.prototype.startsWithEvery = function (arr) {
+        let str = this.toString().toLowerCase();
+        let includes = (el) => str.startsWith((el + "").toLowerCase());
+        return arr.every(includes);
+    };
+
+    String.prototype.startsWithSome = function (arr) {
+        let str = this.toString().toLowerCase();
+        let includes = (el) => str.startsWith((el + "").toLowerCase());
+        return arr.some(includes);
+    };
+
     String.prototype.copy = function () {
         var vm = this.toString();
         console.log("string... ", vm);
