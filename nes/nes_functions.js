@@ -3,10 +3,12 @@ const _nes = function () {
 
     Array.prototype.filterIfIncludes = function (q, isOr) {
         var Q = Array.isArray(q) ? q : [q];
+        Q = Q.toText().trim().toLowerCase()
+
         return this.filter((val) => {
             var sw = !isOr;
             Q.forEach((q) => {
-                let includes = (val + "").includes(q);
+                let includes = (val + "").trim().toLowerCase().includes(q);
                 sw = isOr ? sw || includes : sw & includes;
             });
             return sw;
