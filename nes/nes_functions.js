@@ -33,6 +33,18 @@ const _nes = function () {
         return this.filter((el, i, a) => a.indexOf(el) == i);
     };
 
+    String.prototype.includeEvery = function (arr) {
+        let str = this.toString().toLowerCase();
+        let includes = (el) => str.includes((el + "").toLowerCase());
+        return arr.every(includes);
+    };
+
+    String.prototype.includeSome = function (arr) {
+        let str = this.toString().toLowerCase();
+        let includes = (el) => str.includes((el + "").toLowerCase());
+        return arr.some(includes);
+    };
+
     String.prototype.copy = function () {
         var vm = this.toString();
         console.log("string... ", vm);
