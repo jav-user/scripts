@@ -3,7 +3,7 @@ const _nes = function () {
 
     Array.prototype.filterIfIncludes = function (q, isOr) {
         var Q = Array.isArray(q) ? q : [q];
-        Q = Q.toText().trim().toLowerCase()
+        Q = Q.toText().trim().toLowerCase();
 
         return this.filter((val) => {
             var sw = !isOr;
@@ -91,7 +91,7 @@ const _nes = function () {
         return arr.some(includes);
     };
 
-     String.prototype.startsWithEvery = function (arr) {
+    String.prototype.startsWithEvery = function (arr) {
         let str = this.toString().toLowerCase();
         let includes = (el) => str.startsWith((el + "").toLowerCase());
         return arr.every(includes);
@@ -101,6 +101,18 @@ const _nes = function () {
         let str = this.toString().toLowerCase();
         let includes = (el) => str.startsWith((el + "").toLowerCase());
         return arr.some(includes);
+    };
+
+    String.prototype.toCapitalize = function () {
+        let text = this.toString();
+        let wordsArray = text.toLowerCase().split(" ");
+
+        let capsArray = wordsArray.map((word) => {
+            if (word.trim() == "") return word;
+            return word.replace(word[0], word[0].toUpperCase());
+        });
+
+        return capsArray.join(" ");
     };
 
     String.prototype.copy = function () {
