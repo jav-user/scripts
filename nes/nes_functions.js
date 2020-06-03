@@ -151,6 +151,18 @@ const _nes = function () {
             }, delay * 1000);
     };
 
+    x.addScriptOnce = function (src, id, delay) {
+        if (!delay) delay = 0;
+        var jq = document.createElement("script");
+        jq.id = id;
+        jq.src = src;
+        var head = document.querySelector("head");
+        if (!head.querySelector(`script[src="${src}"]`))
+            setTimeout(() => {
+                head.appendChild(jq);
+            }, delay * 1000);
+    };
+
     x.orderObj = function (obj) {
         const ordered = {};
         Object.keys(obj)
