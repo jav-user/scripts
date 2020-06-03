@@ -12,7 +12,7 @@ document.querySelectorAll("div.ep.info").forEach((ep) => {
 			</button>
 `);
 	var $a = $(ep).find("p a");
-	console.log($a);
+	//console.log($a);
 	var color = $a.eq(0).css("color");
 	var bg = $(ep).css("backgroundColor");
 	var css = {
