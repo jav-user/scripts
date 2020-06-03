@@ -196,9 +196,8 @@ const _nes = function () {
 
         var getCdn = function () {
             var lib = libs[_lib];
-            v = v ? v : Object.keys(lib.v).sort().reverse();
+            v = v ? v : Object.keys(lib.v).sort().reverse()[0];
             min = min ? "min." : "";
-            console.log(lib.v[v],min)
             return lib.mask
                 .replace("$v$", lib.v[v] + ".")
                 .replace("$min$", min);
