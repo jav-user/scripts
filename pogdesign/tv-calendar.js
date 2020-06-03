@@ -1,4 +1,3 @@
-
 //document.querySelectorAll(".eptxt").forEach(ep=>ep.remove())
 $(".eptxt").remove();
 document.querySelectorAll("div.ep.info").forEach((ep) => {
@@ -6,10 +5,11 @@ document.querySelectorAll("div.ep.info").forEach((ep) => {
 		.map((a) => a.innerText.trim())
 		.join(" ");
 
+	var url = `https://rarbgweb.org/torrents.php?category=18;41;49&search=${eptxt}&order=seeders&by=DESC`;
 	var $el = $(`
-			<button class="eptxt">
+			<a class="eptxt" href="${url}">
 				copy
-			</button>
+			</a>
 `);
 	var $a = $(ep).find("p a");
 	//console.log($a);
