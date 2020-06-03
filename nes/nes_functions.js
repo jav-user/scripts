@@ -55,6 +55,12 @@ const _nes = function () {
         return this.sort(() => 0.5 - Math.random());
     };
 
+     Array.prototype.toCapitalize = function () {
+        return this.map((el) =>
+            typeof el == "string" ? el.toCapitalize() : el
+        );
+    };
+
     Array.prototype.toLowerCase = function () {
         return this.map((el) =>
             typeof el == "string" ? el.toLowerCase() : el
