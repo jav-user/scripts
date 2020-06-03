@@ -55,7 +55,7 @@ const _nes = function () {
         return this.sort(() => 0.5 - Math.random());
     };
 
-     Array.prototype.toCapitalize = function () {
+    Array.prototype.toCapitalize = function () {
         return this.map((el) =>
             typeof el == "string" ? el.toCapitalize() : el
         );
@@ -179,6 +179,28 @@ const _nes = function () {
 
     x.randomBetween = function (min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+
+    x.cdn = function (lib, v, min) {
+        min = min ? "min." : "";
+        var libs = {
+            jquery: {
+                mask: "https://code.jquery.com/jquery-$v$$min$js",
+                v: {
+                    3: "3.5.1",
+                    2: "2.2.4",
+                    1: "1.12.4",
+                },
+                cdn: function () {
+                    v = v ? v : Object.keys(this.v).sort().reverse();
+                    return this.mask
+                        .replace("$v$", this.v[v] + ".")
+                        .replace("$min$", min);
+                },
+            },
+        };
+
+        return libs[lib].cdn();
     };
 };
 
