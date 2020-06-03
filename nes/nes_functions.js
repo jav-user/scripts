@@ -198,6 +198,7 @@ const _nes = function () {
             var lib = libs[_lib];
             v = v ? v : Object.keys(lib.v).sort().reverse();
             min = min ? "min." : "";
+            console.log(lib.v[v],min)
             return lib.mask
                 .replace("$v$", lib.v[v] + ".")
                 .replace("$min$", min);
