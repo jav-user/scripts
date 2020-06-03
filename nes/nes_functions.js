@@ -181,8 +181,8 @@ const _nes = function () {
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
 
-    x.cdn = function (lib, v, min) {
-        min = min ? "min." : "";
+    x.cdn = function (_lib, v, min) {
+
         var libs = {
             jquery: {
                 mask: "https://code.jquery.com/jquery-$v$$min$js",
@@ -191,16 +191,19 @@ const _nes = function () {
                     2: "2.2.4",
                     1: "1.12.4",
                 },
-                cdn: function () {
-                    v = v ? v : Object.keys(this.v).sort().reverse();
-                    return this.mask
-                        .replace("$v$", this.v[v] + ".")
-                        .replace("$min$", min);
-                },
             },
         };
 
-        return libs[lib].cdn();
+        var getCdn = function () {
+            var lib = libs[_lib];
+            v = v ? v : Object.keys(lib.v).sort().reverse();
+            min = min ? "min." : "";
+            return lib.mask
+                .replace("$v$", lib.v[v] + ".")
+                .replace("$min$", min);
+        };
+
+        return getCdn();
     };
 };
 
