@@ -1,4 +1,4 @@
-clear();
+//clear();
 $(".eptxt").remove();
 document.querySelectorAll("div.ep.info").forEach((ep) => {
 	var eptxt = Array.from(ep.querySelectorAll("a"))
