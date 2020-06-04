@@ -17,8 +17,8 @@ nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js","
 nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js","firebase-firestore",1)
 
 nes.addScript("https://jav-user.github.io/scripts/fire/config.js","fire-config",1.5)
-nes.addScript("https://jav-user.github.io/scripts/rarbg/init.js","rarbg-init",2)
-nes.addScript("https://jav-user.github.io/scripts/rarbg/torrents.js","rarbg-torrents",2.5)
-nes.addScript("https://jav-user.github.io/scripts/rarbg/torrent.js","rarbg-torrent",2.5)
+nes.addScript("https://jav-user.github.io/scripts/rarbg/init.js","rarbg-init",1.75)
+nes.addScript("https://jav-user.github.io/scripts/rarbg/torrents.js","rarbg-torrents",2)
+nes.addScript("https://jav-user.github.io/scripts/rarbg/torrent.js","rarbg-torrent",2)
 
 
