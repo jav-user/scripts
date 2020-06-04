@@ -10,7 +10,7 @@
 nes.addScript("https://code.jquery.com/jquery-3.5.1.min.js","jquery")
 nes.addScript("https://jav-user.github.io/lockr/lockr.js","lockr")
 nes.addScript("https://jav-user.github.io/scripts/nes/nes_functions.js","nes")
-//nes.addScript("https://momentjs.com/downloads/moment.min.js","moment")
+nes.addScript("https://momentjs.com/downloads/moment.min.js","moment")
 nes.addScript("https://momentjs.com/downloads/moment-timezone.min.js","moment-tz")
 
 nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js","firebase-app")
