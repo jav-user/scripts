@@ -13,12 +13,12 @@ nes.addScript("https://jav-user.github.io/scripts/nes/nes_functions.js","nes")
 nes.addScript("https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js","moment")
 
 nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js","firebase-app")
-nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js","firebase-database",0.5)
-nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js","firebase-firestore",0.5)
+nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js","firebase-database",1)
+nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js","firebase-firestore",1)
 
-nes.addScript("https://jav-user.github.io/scripts/fire/config.js","fire-config",1)
-nes.addScript("https://jav-user.github.io/scripts/rarbg/init.js","rarbg-init",1.5)
-nes.addScript("https://jav-user.github.io/scripts/rarbg/torrents.js","rarbg-torrents",2)
-nes.addScript("https://jav-user.github.io/scripts/rarbg/torrent.js","rarbg-torrent",2)
+nes.addScript("https://jav-user.github.io/scripts/fire/config.js","fire-config",1.5)
+nes.addScript("https://jav-user.github.io/scripts/rarbg/init.js","rarbg-init",2)
+nes.addScript("https://jav-user.github.io/scripts/rarbg/torrents.js","rarbg-torrents",3)
+nes.addScript("https://jav-user.github.io/scripts/rarbg/torrent.js","rarbg-torrent",3)
 
 
