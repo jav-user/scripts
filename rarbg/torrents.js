@@ -101,12 +101,5 @@ if (window.location.pathname.startsWith("/torrents.php")) {
 
         })
     
-    $(".lista2t").find("tr").each((i,tr)=>{
-        var $tds = $(tr).find("td.lista")
-        var added = $tds.eq(2)
-        console.log(added.text())
-        var ago = moment.tz(added.text(),"Europe/Berlin").fromNow()
-        added.attr("title",added.text())
-        added.text(ago)
-      })
+
 }
