@@ -1,20 +1,18 @@
-body {
-color:	red !important;
-} 
+
 .eptxt a {
-	float: "left";
-	font-size: "10px";
-	font-weight: "bold";
-	margin-right: "2px";
-	margin-left: "2px";
+	float: left;
+	font-size: 10px;
+	font-weight: bold;
+	margin-right: 2px;
+	margin-left: 2px;
 }
 
 .eptxt a:hover {
-	font-size: "10px";
+	font-size: 10px;
 	color: yellow;
-	font-weight: "bold";
-	margin-right: "2px";
-	margin-left: "2px";
+	font-weight: bold;
+	margin-right: 2px;
+	margin-left: 2px;
 }
 
 .eptxt span{
