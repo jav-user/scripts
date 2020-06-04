@@ -9,7 +9,9 @@
 
 nes.addScript("https://code.jquery.com/jquery-3.5.1.min.js","jquery")
 nes.addScript("https://jav-user.github.io/lockr/lockr.js","lockr")
-nes.addScript("https://jav-user.github.io/scripts/nes/nes_functions.js","lockr")
+nes.addScript("https://jav-user.github.io/scripts/nes/nes_functions.js","nes")
+nes.addScript("https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js","moment")
+
 nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js","firebase-app")
 nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js","firebase-database",0.5)
 nes.addScript("https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js","firebase-firestore",0.5)
