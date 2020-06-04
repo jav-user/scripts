@@ -102,9 +102,10 @@ if (window.location.pathname.startsWith("/torrents.php")) {
         var $tds = $(tr).find("td.lista")
         var added = $tds.eq(2)
         console.log(added.text())
-        var ago = moment.tz(added.text(),"Europe/Berlin").fromNow()
-        added.attr("title",added.text())
-        added.text(ago)
+        var dtBerlin = moment.tz(added.text(),"Europe/Berlin")
+        var dt = dt.clone().tz(nes.getTimezone())
+        added.attr("title",dt.format("YYYY-MM-DD hh:mm:ss a"))
+        added.text(dt.fromNow())
       })
     
 
