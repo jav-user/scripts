@@ -199,6 +199,8 @@ const _nes = function () {
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
 
+    x.getTimezone=()=> new window.Intl.DateTimeFormat().resolvedOptions().timeZone
+    
     x.cdn = function (_lib, v, min) {
         var libs = {
             jquery: {
