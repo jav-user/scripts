@@ -16,7 +16,7 @@ document.querySelectorAll("div.ep.info").forEach((ep) => {
 				<span><a  href="${urlSeed}" target="_blank">seed</a></span>
 				<span><a  href="${urlDate}" target="_blank">date</a></span>
 			</span>
-			<br/>
+		 
 			<span class="eptxt">
 				<a  href="#">copy</a>
 			</span>
