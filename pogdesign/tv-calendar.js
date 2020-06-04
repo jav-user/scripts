@@ -18,24 +18,24 @@ document.querySelectorAll("div.ep.info").forEach((ep) => {
 	var css = {
 		//textAlign:"center",
 		fontSize: "11px",
-		backgroundColor: bg,
+		//backgroundColor: bg,
 		color: color,
 		fontWeight: "bold",
-		borderRadius: "3px",
-		//border:"none",
-		borderWidth: "1px",
-		borderColor: color,
+// 		borderRadius: "3px",
+// 		//border:"none",
+// 		borderWidth: "1px",
+// 		borderColor: color,
 	};
 
 	var cssHover = {
 		//textAlign:"center",
 		fontSize: "11px",
-		backgroundColor: "black",
+		//backgroundColor: "black",
 		color: "yellow",
 		fontWeight: "bold",
-		borderRadius: "5px",
-		borderWidth: "1px",
-		borderColor: color,
+// 		borderRadius: "5px",
+// 		borderWidth: "1px",
+// 		borderColor: color,
 	};
 	$el.css(css);
 	$el.attr("title", eptxt);
