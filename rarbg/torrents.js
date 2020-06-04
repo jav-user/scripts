@@ -103,7 +103,7 @@ if (window.location.pathname.startsWith("/torrents.php")) {
         var added = $tds.eq(2)
         console.log(added.text())
         var dtBerlin = moment.tz(added.text(),"Europe/Berlin")
-        var dt = dt.clone().tz(nes.getTimezone())
+        var dt = dtBerlin.clone().tz(nes.getTimezone())
         added.attr("title",dt.format("YYYY-MM-DD hh:mm:ss a"))
         added.text(dt.fromNow())
       })
