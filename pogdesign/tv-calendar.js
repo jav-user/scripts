@@ -18,7 +18,7 @@ document.querySelectorAll("div.ep.info").forEach((ep) => {
 				</span>
 			 
 				<span class="eptxt">
-					<a  href="#">copy</a>
+					<a  >copy</a>
 				</span>
 			`);
 	var $a = $(ep).find("p a");
