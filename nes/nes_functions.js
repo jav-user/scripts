@@ -224,6 +224,24 @@ const _nes = function () {
 
         return getCdn();
     };
+    
+    String.prototype.toValidFileName = function() {
+    return this
+        .replace(/[?]/g, '_')
+        .replace(/[:]/g, '.')
+        .replace(/[;]/g, ',')
+        .replace(/[*]/g, '')
+        .replace(/[/]/g, '-')
+        .replace(/[\\]/g, '-')
+        .replace(/[{]/g, '[')
+        .replace(/[}]/g, ']')
+        .replace(/["]/g, '\'')
+        .replace(/[>]/g, ']')
+        .replace(/[<]/g, '[')
+        .replace(/[|]/g, '-')
+
+    // return this.replace(/[ &\/\\#,+()$~%.'":*?<>{}]/g, "_")
+}
 };
 
 const nes = new _nes();
