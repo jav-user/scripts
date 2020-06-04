@@ -15,8 +15,10 @@ document.querySelectorAll("div.ep.info").forEach((ep) => {
 				<span><b>Rarbg:</b></span>
 				<span><a  href="${urlSeed}" target="_blank">seed</a></span>
 				<span><a  href="${urlDate}" target="_blank">date</a></span>
-				<br/>
-				<span><a  href="#">copy</a></span>
+			</span>
+			<br/>
+			<span class="eptxt">
+				<a  href="#">copy</a>
 			</span>
 `);
 	var $a = $(ep).find("p a");
