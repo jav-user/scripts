@@ -39,7 +39,7 @@ document.querySelectorAll("div.ep.info").forEach((ep) => {
 	// 	fontWeight: "bold",
 	// };
 
-	// $el.find("a").css(css);
+	 $el.find("a").css(css);
 	$el.find("a").attr("title", eptxt);
 	// $el.find("span").css({ float: "left" });
 
