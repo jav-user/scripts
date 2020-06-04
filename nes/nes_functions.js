@@ -145,16 +145,34 @@ const _nes = function () {
         return data;
     };
 
+    x.addStyle = function (href, id, delay) {
+        if (!delay) delay = 0;
+        var link = document.createElement("link");
+        link.id = id;
+        link.rel = "stylesheet"
+        link.type= "text/css"
+
+        link.href = href + "?var=" + x.randomBetween(100, 1000);
+        var head = document.querySelector("head");
+        if (!head.querySelector(`link[id=${id}]`)) {
+            setTimeout(() => {
+                head.appendChild(link);
+            }, delay * 1000);
+        }
+    };
+
     x.addScript = function (src, id, delay) {
         if (!delay) delay = 0;
-        var jq = document.createElement("script");
-        jq.id = id;
-        jq.src = src + "?var=" + x.randomBetween(100, 1000);
+        var script = document.createElement("script");
+        script.id = id;
+        script.type = "text/javascript"
+        script.src = src + "?var=" + x.randomBetween(100, 1000);
         var head = document.querySelector("head");
-        if (!head.querySelector(`script[src="${src}"]`))
+        if (!head.querySelector(`script[id=${id}]`)) {
             setTimeout(() => {
-                head.appendChild(jq);
+                head.appendChild(script);
             }, delay * 1000);
+        }
     };
 
     x.addScriptOnce = function (src, id, delay) {
@@ -182,7 +200,6 @@ const _nes = function () {
     };
 
     x.cdn = function (_lib, v, min) {
-
         var libs = {
             jquery: {
                 mask: "https://code.jquery.com/jquery-$v$$min$js",
