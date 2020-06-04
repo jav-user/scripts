@@ -11,16 +11,16 @@ document.querySelectorAll("div.ep.info").forEach((ep) => {
 	var urlDate = `https://rarbgweb.org/torrents.php?category=18;41;49&search=${eptxt}&order=data&by=DESC`;
 
 	var $el = $(`
-			<span class="eptxt">
-				<span><b>Rarbg:</b></span>
-				<span><a  href="${urlSeed}" target="_blank">seed</a></span>
-				<span><a  href="${urlDate}" target="_blank">date</a></span>
-			</span>
-		 
-			<span class="eptxt">
-				<a  href="#">copy</a>
-			</span>
-`);
+				<span class="eptxt">
+					<span><b>Rarbg:</b></span>
+					<span><a  href="${urlSeed}" target="_blank">seed</a></span>
+					<span><a  href="${urlDate}" target="_blank">date</a></span>
+				</span>
+			 
+				<span class="eptxt">
+					<a  href="#">copy</a>
+				</span>
+			`);
 	var $a = $(ep).find("p a");
 	//console.log($a);
 	var color = $a.eq(0).css("color");
