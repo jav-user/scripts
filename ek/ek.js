@@ -1,4 +1,5 @@
 var ext = ""
+var total = 0
 var getImgs = function(){
 ext = ext ? "."+ext : ""
 var imgs = Array
@@ -7,6 +8,8 @@ var imgs = Array
 ".gallery-item-visible.gallery-item.gallery-item-hidden.gallery-item-preloaded"))
                 .map(img=>img.src)
                 .filter((el,i,a)=>a.indexOf(el)==i)
+
+total = imgs.length
                
 var title = document.querySelector("title").innerText
 var dominio = window.location.host
@@ -30,3 +33,8 @@ return res
 }
 //copy(getImgs())
 var interval = setInterval(()=>{console.clear();getImgs()},10*1000)
+
+document.querySelector("#comp-js277b4gimgimage").onclick = function(){
+copy(getImgs())
+console.log("copied...", total)
+}
