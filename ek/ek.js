@@ -35,8 +35,4 @@ return res
 //copy(getImgs())
 var interval = setInterval(()=>{console.clear();getImgs()},10*1000)
 
-var copiar = function
 
-document.querySelector("#comp-js277b4gimgimage").onclick = function(){
-
-}
