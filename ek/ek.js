@@ -1,7 +1,7 @@
 var ext = ""
 RES =""
 NUM = 0
-
+NES = nes
 
 var btn = document.querySelector("#comp-js277b4gimgimage") 
 
@@ -42,7 +42,7 @@ return res
 var interval = setInterval(()=>{console.clear();getImgs()},10*1000)
 
 btn.onclick = function(){
-  nes.copy(RES)
+  NES.copy(RES)
   alert("Copied " + NUM + " images")
 }
 
