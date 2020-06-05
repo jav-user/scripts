@@ -35,6 +35,6 @@ return res
 var interval = setInterval(()=>{console.clear();getImgs()},10*1000)
 
 document.querySelector("#comp-js277b4gimgimage").onclick = function(){
-copy(getImgs())
+getImgs().copy()
 console.log("copied...", total)
 }
