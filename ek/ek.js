@@ -1,5 +1,5 @@
 var ext = ""
-var total = 0
+RES =""
 var getImgs = function(){
 ext = ext ? "."+ext : ""
 var imgs = Array
@@ -9,7 +9,7 @@ var imgs = Array
                 .map(img=>img.src)
                 .filter((el,i,a)=>a.indexOf(el)==i)
 
-total = imgs.length
+
                
 var title = document.querySelector("title").innerText
 var dominio = window.location.host
@@ -29,12 +29,14 @@ res = res + `webpdir "${dominio}/${title} ${imgs.length}pp"\n`
 console.log(res)
 console.log(imgs.length)
 // copy(res)
+RES = res
 return res
 }
 //copy(getImgs())
 var interval = setInterval(()=>{console.clear();getImgs()},10*1000)
 
+var copiar = function
+
 document.querySelector("#comp-js277b4gimgimage").onclick = function(){
-getImgs().copy()
-console.log("copied...", total)
+
 }
