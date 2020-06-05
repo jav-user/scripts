@@ -132,6 +132,18 @@ const _nes = function () {
         document.body.removeChild(tempInput);
         return true;
     };
+    
+    x.copy = function(str){
+        var vm = str
+        console.log("string... ", vm);
+        var tempInput = document.createElement("input");
+        tempInput.value = vm;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        return true;
+    }
 
     x._get = function () {
         var search = window.location.search.split("?")[1];
