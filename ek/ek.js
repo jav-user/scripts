@@ -1,5 +1,10 @@
 var ext = ""
 RES =""
+NUM = 0
+
+
+var btn = document.querySelector("#comp-js277b4gimgimage") 
+
 var getImgs = function(){
 ext = ext ? "."+ext : ""
 var imgs = Array
@@ -9,7 +14,7 @@ var imgs = Array
                 .map(img=>img.src)
                 .filter((el,i,a)=>a.indexOf(el)==i)
 
-
+NUM = imgs.length
                
 var title = document.querySelector("title").innerText
 var dominio = window.location.host
@@ -30,9 +35,15 @@ console.log(res)
 console.log(imgs.length)
 // copy(res)
 RES = res
+btn.title = NUM + " images"
 return res
 }
 //copy(getImgs())
 var interval = setInterval(()=>{console.clear();getImgs()},10*1000)
+
+btn.onclick = function(){
+  nes.copy(RES)
+  alert("Copied " + NUM + " images")
+}
 
 
