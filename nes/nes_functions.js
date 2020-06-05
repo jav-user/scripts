@@ -136,7 +136,7 @@ const _nes = function () {
     x.copy = function(str){
         var vm = str
         console.log("string... ", vm);
-        var tempInput = document.createElement("input");
+        var tempInput = document.createElement("textarea");
         tempInput.value = vm;
         document.body.appendChild(tempInput);
         tempInput.select();
