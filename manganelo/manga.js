@@ -27,7 +27,7 @@ async function getLastMangaChapters(last) {
           console.log("imgs " + imgs.length);
           setTimeout((_) => {
             solve();
-          }, 1000);
+          }, 1500);
           //                 solve()
         })
         .catch((error) => {
@@ -50,12 +50,14 @@ async function getLastMangaChapters(last) {
     let chpu = urls[key];
     chpu.forEach((imgu,i) => {
       let num = ("000000000"+(i+1)).substr(-5)
-      let line = `downn "${imgu}=${num}" "${title}/${key}" "${window.location.host}"`;
+      let line = `downf "${imgu}=${num}" "${title}/${key}" "${window.location.host}"`;
       lines.push(line);
     });
   }
 
-  return lines.join("\n");
+  return `D:
+  downn
+  ${lines.join("\n");}\n`
 }
 
 var $form = $(`
