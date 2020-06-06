@@ -39,7 +39,9 @@ async function getLastMangaChapters(last) {
     var done = Object.keys(urls).length;
     var total = last;
     var percent = (done / total) * 100;
-    var display = `Done ${done} of ${total} (${Math.round(percent*100)/100}%)`;
+    var display = `Done ${done} of ${total} (${
+      Math.round(percent * 100) / 100
+    }%)`;
     $(".last_info span").text(display);
     // $list.text(list_text+" "+loading + "%")
   }
@@ -48,8 +50,8 @@ async function getLastMangaChapters(last) {
 
   for (const key in urls) {
     let chpu = urls[key];
-    chpu.forEach((imgu,i) => {
-      let num = ("000000000"+(i+1)).substr(-5)
+    chpu.forEach((imgu, i) => {
+      let num = ("000000000" + (i + 1)).substr(-5);
       let line = `downf "${imgu}=${num}" "${title}/${key}" "${window.location.host}"`;
       lines.push(line);
     });
@@ -57,7 +59,7 @@ async function getLastMangaChapters(last) {
 
   return `D:
   downn
-  ${lines.join("\n");}\n`
+  ${lines.join("\n")}\n`;
 }
 
 var $form = $(`
@@ -81,7 +83,6 @@ $(".last_form").remove();
 $(".last_info").remove();
 $(".info-image > .img-loading").after($form);
 $("#last_btn").on("click", function () {
-  
   $(".last_info").show();
   $(".last_form").hide();
 
