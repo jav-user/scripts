@@ -2,11 +2,11 @@ var LINES = "";
 
 async function getLastMangaChapters(last) {
   last = last ? last : 5;
-  var $chapters = $(".chapter-name").slice(0, last);
+  var $chapters = Array.from($(".chapter-name").slice(0, last)).reverse();
   var urls = {};
   var title = $("title").text().toValidFileName();
   var size = $chapters.length;
-  for (const [i, chapter] of Array.from($chapters).entries()) {
+  for (const [i, chapter] of $chapters.entries()) {
     var url = chapter.href;
     var name = chapter.innerText;
     var folder = name.toValidFileName();
@@ -27,7 +27,7 @@ async function getLastMangaChapters(last) {
           console.log("imgs " + imgs.length);
           setTimeout((_) => {
             solve();
-          }, 1.5*1000);
+          }, 1500);
           //                 solve()
         })
         .catch((error) => {
