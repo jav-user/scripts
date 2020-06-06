@@ -58,7 +58,8 @@ async function getLastMangaChapters(last) {
   }
 
   return `D:
-downn\n${lines.join("\n")}\n`;
+  downn
+  ${lines.join("\n")}\n`;
 }
 
 var $form = $(`
