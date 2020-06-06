@@ -18,7 +18,7 @@ vm.getLines = function (imgurls, folder){
     return lines.join("\n")
 }
 
-nm.getCmd = function(imgurls, folder){
+vm.getCmd = function(imgurls, folder){
     var lines = vm.getLines(imgurls, folder)
     var cmd = `D:\n${lines}\n`
     CMD = cmd
