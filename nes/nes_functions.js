@@ -240,7 +240,7 @@ const _nes = function () {
     String.prototype.toValidFileName = function() {
     return this
         .replace(/[?]/g, '_')
-        .replace(/[:]/g, '.')
+        .replace(/[:]/g, '-')
         .replace(/[;]/g, ',')
         .replace(/[*]/g, '')
         .replace(/[/]/g, '-')
