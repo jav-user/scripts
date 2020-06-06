@@ -1,4 +1,4 @@
-var nesMangas = function (){
+var nesManga = function (){
 CMD = ""
 NUM = 0
 var vm = this
@@ -18,8 +18,8 @@ vm.getLines = function (imgurls, folder){
     return lines.join("\n")
 }
 
-nm.getCmd = function(imgurls){
-    var lines = vm.getLines(imgurls)
+nm.getCmd = function(imgurls, folder){
+    var lines = vm.getLines(imgurls, folder)
     var cmd = `D:\n${lines}\n`
     CMD = cmd
     return cmd
@@ -27,5 +27,5 @@ nm.getCmd = function(imgurls){
 }
 
 
-
+var nesMg = new nesManga()
 
