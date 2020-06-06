@@ -27,7 +27,7 @@ async function getLastMangaChapters(last) {
           console.log("imgs " + imgs.length);
           setTimeout((_) => {
             solve();
-          }, 1500);
+          }, 2500);
           //                 solve()
         })
         .catch((error) => {
