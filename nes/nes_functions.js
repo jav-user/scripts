@@ -183,6 +183,7 @@ const _nes = function () {
         if (!head.querySelector(`script[id=${id}]`)) {
             setTimeout(() => {
                 head.appendChild(script);
+                console.log("Added script "+id)
             }, delay * 1000);
         }
     };
@@ -196,6 +197,7 @@ const _nes = function () {
         if (!head.querySelector(`script[src="${src}"]`))
             setTimeout(() => {
                 head.appendChild(jq);
+                console.log("Added script "+id)
             }, delay * 1000);
     };
 
