@@ -27,7 +27,7 @@ async function getLastMangaChapters(last) {
           console.log("imgs " + imgs.length);
           setTimeout((_) => {
             solve();
-          }, 1500);
+          }, nes.randomBetween(.5,3)*1000);
           //                 solve()
         })
         .catch((error) => {
