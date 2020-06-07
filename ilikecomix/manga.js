@@ -17,7 +17,7 @@ $("img[src]").each((i,img)=>{
      var src = $($img).attr("src")
      src = src.includes("/th/") ? src.replace("/th/","/i/") : src
      $img
-        .parent()
+        .parent().parent()
         .attr("href", src)
         .addClass("dgwt-jg-item") 
 })
