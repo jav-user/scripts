@@ -158,15 +158,23 @@ function copyMangas() {
 async function getMangas() {
     var btns = Array.from($(".nes_custom .btn_get:not(.skip_manga)"));
     // .slice(0, 3);
+    var $mangas_info = $(".mangas_info")
+    $mangas_info.css({color:"",fontWeight:"bold"})
+
     for (var [i, btn] of btns.entries()) {
         await new Promise((solve) => {
             var $el = $(btn).parent();
             getManga($el, solve);
             // console.log(btn);
-            var info = `Doing... ${$(btn).attr("data-folder")} (${i + 1} of ${
+            var info = `${$(btn).attr("data-folder")} (${i + 1} of ${
                 btns.length
             })`;
-            $(".mangas_info").text(info);
+            $(".mangas_info").text("Doing... "+info);
+            if(i+1==btns.length){
+                $mangas_info.text("Done "+info);
+                $mangas_info.css({color:"green"})
+
+            }
         });
     }
 }
