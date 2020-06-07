@@ -10,3 +10,16 @@ $("#btn_copy").on("click",function(){
     nes.copy(CMD)
     alert(NUM + " images copied!")
 })
+
+/*
+$("img[src]").each((i,img)=>{
+     var $img = $(img)
+     var src = $($img).attr("src")
+     src = src.includes("/th/") ? src.replace("/th/","/i/") : src
+     $img
+        .parent()
+        .attr("href", src)
+        .addClass("dgwt-jg-item") 
+})
+
+*/
