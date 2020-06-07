@@ -43,6 +43,8 @@ var loadMangasGUI = function () {
             $btn.css({ color: "gray" });
             $btn_skip.hide();
             $btn_noskip.show();
+            CMDS[folder] = CMDS[folder] ? CMDS[folder] : {}
+            CMDS[folder].skip=true
         });
 
         $btn_noskip.on("click", function () {
@@ -50,6 +52,7 @@ var loadMangasGUI = function () {
             $btn.css({ color: "", fontWeight: "bold" });
             $btn_skip.show();
             $btn_noskip.hide();
+            CMDS[folder].skip=false
         });
 
         $btn_copy.on("click", function () {
@@ -102,10 +105,10 @@ var getManga = function ($el, solve) {
             var cmd = nesMg.getCmd(imgurls, folder);
             //         console.log(html)
             // if (CMDS.indexOf(cmd)) CMDS.push(cmd);
-            CMDS[folder] = {
-                cmd: cmd,
-                num: imgurls.length,
-            };
+            CMDS[folder] = CMDS[folder] ? CMDS[folder] : {}
+            CMDS[folder].cmd= cmd,
+            CMDS[folder].num= imgurls.length,
+            
 
             $info.text(`Done! (${imgurls.length} images)`);
             var color = "red";
@@ -134,18 +137,22 @@ function copyMangas() {
     // alert("Copied " + CMDS.length + " mangas!");
     // console.log(cmds);
     //
-    let num = 0;
+    let imgs = 0;
     let cmds = [];
+    let mangas = 0;
     for (var key in CMDS) {
         let cmd = CMDS[key];
-        cmds.push(cmd.cmd);
-        num = num + cmd.num;
+        if(!cmd.skip){
+            cmds.push(cmd.cmd);
+            imgs = imgs + cmd.num;
+            mangas ++
+        }
     }
 
     let _cmds = cmds.join("\n");
     nes.copy(_cmds);
     console.log(_cmds);
-    alert(`Copied ${Object.keys(CMDS).length} mangas and ${num} images!`);
+    alert(`Copied ${mangas} mangas and ${imgs} images!`);
 }
 
 async function getMangas() {
@@ -164,4 +171,5 @@ async function getMangas() {
     }
 }
 
-
+// skip done
+// red if 0 images done?
