@@ -19,7 +19,11 @@ $("img[src]").each((i,img)=>{
          ? src.replace("/th/","/i/").replace(".jpg",".png") 
         : src
      var $a = $img.parent()
+    // var $figure = $(`<figure class="dgwt-jg-item jg-entry entry-visible" data-size="1011x1400" style="width: 179px; height: 248.22px; top: 8px; left: 8px;"></figure>`)
      $a.attr("href", src)
+//      $figure.append($a.clone())
+//      $a.parent().appent($figure)
+//      $a.remove()
      $a.parent().addClass("dgwt-jg-item jg-entry entry-visible") 
 })
 
