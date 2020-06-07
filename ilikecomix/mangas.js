@@ -132,3 +132,6 @@ async function getMangas() {
         });
     }
 }
+
+// skip
+// red if 0 images
