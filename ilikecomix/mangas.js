@@ -4,9 +4,9 @@ var loadMangasGUI = function () {
     var $custom_manga = $(`
         <div class="nes_custom">
             <div class="manga_info"></div>
-            <button class="btn_get">Get Comic</button>
-            <hr/>
             <center>
+                <button class="btn_get">Get Comic</button>
+                <hr/>
                 <button class="btn_skip">Skip</button>
                 <button class="btn_noskip" style="display:none">
                     No Skip
