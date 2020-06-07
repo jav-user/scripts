@@ -16,8 +16,10 @@ $("img[src]").each((i,img)=>{
      var $img = $(img)
      var src = $($img).attr("src")
      src = src.includes("/th/") && src.includesSome(['imagetwist.com']) 
-         ? src.replace("/th/","/i/").replace(".jpg",".png") 
+         ? src.replace("/th/","/i/")
         : src
+     if(src.includes("img60.imagetwist.com")) src = src.replace(".jpg",".png") 
+    
      var $a = $img.parent()
     // var $figure = $(`<figure class="dgwt-jg-item jg-entry entry-visible" data-size="1011x1400" style="width: 179px; height: 248.22px; top: 8px; left: 8px;"></figure>`)
      $a.attr("href", src)
