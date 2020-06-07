@@ -11,7 +11,7 @@ $("#btn_copy").on("click",function(){
     alert(NUM + " images copied!")
 })
 
-
+/*
 $("img[src]").each((i,img)=>{
      var $img = $(img)
      var _src = $($img).attr("src")
@@ -23,16 +23,14 @@ $("img[src]").each((i,img)=>{
     
      var $a = $img.parent()
      $img.attr("src",src)
-//      $img.attr("onerror",_src)
+
     $img.on("error", function () {
         $(this).attr("src", _src);
     });
-    // var $figure = $(`<figure class="dgwt-jg-item jg-entry entry-visible" data-size="1011x1400" style="width: 179px; height: 248.22px; top: 8px; left: 8px;"></figure>`)
      $a.attr("href", src)
-//      $figure.append($a.clone())
-//      $a.parent().appent($figure)
-//      $a.remove()
+
      $a.parent().addClass("dgwt-jg-item jg-entry entry-visible") 
 })
 
 
+*/
