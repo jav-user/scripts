@@ -11,15 +11,15 @@ $("#btn_copy").on("click",function(){
     alert(NUM + " images copied!")
 })
 
-/*
+
 $("img[src]").each((i,img)=>{
      var $img = $(img)
      var src = $($img).attr("src")
-     src = src.includes("/th/") ? src.replace("/th/","/i/") : src
+     src = src.includes("/th/") && src.includesSome(['imagetwist.com']) ? src.replace("/th/","/i/") : src
      $img
         .parent().parent()
         .attr("href", src)
         .addClass("dgwt-jg-item") 
 })
 
-*/
+
