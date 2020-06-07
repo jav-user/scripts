@@ -16,10 +16,9 @@ $("img[src]").each((i,img)=>{
      var $img = $(img)
      var src = $($img).attr("src")
      src = src.includes("/th/") && src.includesSome(['imagetwist.com']) ? src.replace("/th/","/i/") : src
-     $img
-        .parent().parent()
-        .attr("href", src)
-        .addClass("dgwt-jg-item") 
+     var $a = $img.parent()
+     $a.attr("href", src)
+     $a.parent().addClass("dgwt-jg-item") 
 })
 
 
