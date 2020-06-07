@@ -18,7 +18,7 @@ $("img[src]").each((i,img)=>{
      src = src.includes("/th/") && src.includesSome(['imagetwist.com']) ? src.replace("/th/","/i/") : src
      var $a = $img.parent()
      $a.attr("href", src)
-     $a.parent().addClass("dgwt-jg-item") 
+     $a.parent().addClass("dgwt-jg-item jg-entry entry-visible") 
 })
 
 
