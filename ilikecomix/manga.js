@@ -15,7 +15,9 @@ $("#btn_copy").on("click",function(){
 $("img[src]").each((i,img)=>{
      var $img = $(img)
      var src = $($img).attr("src")
-     src = src.includes("/th/") && src.includesSome(['imagetwist.com']) ? src.replace("/th/","/i/") : src
+     src = src.includes("/th/") && src.includesSome(['imagetwist.com']) 
+         ? src.replace("/th/","/i/").replace(".jpg",".png") 
+        : src
      var $a = $img.parent()
      $a.attr("href", src)
      $a.parent().addClass("dgwt-jg-item jg-entry entry-visible") 
