@@ -11,10 +11,10 @@ $("#btn_copy").on("click",function(){
     alert(NUM + " images copied!")
 })
 
-/*
+
 $("img[src]").each((i,img)=>{
      var $img = $(img)
-     var _src = $($img).attr("src")
+     var _src = $img.attr("src")
      var src = _src.includes("/th/") && _src.includesSome(['imagetwist.com']) 
         ? _src.replace("/th/","/i/")
         : _src
@@ -33,4 +33,4 @@ $("img[src]").each((i,img)=>{
 })
 
 
-*/
+
