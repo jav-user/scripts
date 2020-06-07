@@ -11,7 +11,7 @@ $("#btn_copy").on("click",function(){
     alert(NUM + " images copied!")
 })
 
-
+/*
 $("img[src]").each((i,img)=>{
      var $img = $(img)
      var _src = $img.attr("src")
@@ -31,6 +31,6 @@ $("img[src]").each((i,img)=>{
 
      $a.parent().addClass("dgwt-jg-item jg-entry entry-visible") 
 })
-
+*/
 
 
