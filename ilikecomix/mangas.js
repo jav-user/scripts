@@ -188,6 +188,9 @@ var whitelist = [
     "full color",
     "kissing",
     "school",
+    "sister",
+    "teen",
+    "x-ray",
 ];
 var $posts = $(".post");
 $posts.each((i, post) => {
