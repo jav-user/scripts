@@ -163,7 +163,7 @@ async function getMangas() {
 
     for (var [i, btn] of btns.entries()) {
         await new Promise((solve) => {
-            var $el = $(btn).parent();
+            var $el = $(btn).parent().parent();
             getManga($el, solve);
             // console.log(btn);
             var info = `${$(btn).attr("data-folder")} (${i + 1} of ${
