@@ -43,8 +43,8 @@ var loadMangasGUI = function () {
             $btn.css({ color: "gray" });
             $btn_skip.hide();
             $btn_noskip.show();
-            CMDS[folder] = CMDS[folder] ? CMDS[folder] : {}
-            CMDS[folder].skip=true
+            CMDS[folder] = CMDS[folder] ? CMDS[folder] : {};
+            CMDS[folder].skip = true;
         });
 
         $btn_noskip.on("click", function () {
@@ -52,7 +52,7 @@ var loadMangasGUI = function () {
             $btn.css({ color: "", fontWeight: "bold" });
             $btn_skip.show();
             $btn_noskip.hide();
-            CMDS[folder].skip=false
+            CMDS[folder].skip = false;
         });
 
         $btn_copy.on("click", function () {
@@ -105,12 +105,10 @@ var getManga = function ($el, solve) {
             var cmd = nesMg.getCmd(imgurls, folder);
             //         console.log(html)
             // if (CMDS.indexOf(cmd)) CMDS.push(cmd);
-            CMDS[folder] = CMDS[folder] ? CMDS[folder] : {}
-            CMDS[folder].cmd= cmd,
-            CMDS[folder].num= imgurls.length,
-            
-
-            $info.text(`Done! (${imgurls.length} images)`);
+            CMDS[folder] = CMDS[folder] ? CMDS[folder] : {};
+            (CMDS[folder].cmd = cmd),
+                (CMDS[folder].num = imgurls.length),
+                $info.text(`Done! (${imgurls.length} images)`);
             var color = "red";
             if (imgurls.length > 1) color = "orange";
             if (imgurls.length > 5) color = "green";
@@ -142,10 +140,10 @@ function copyMangas() {
     let mangas = 0;
     for (var key in CMDS) {
         let cmd = CMDS[key];
-        if(!cmd.skip){
+        if (!cmd.skip) {
             cmds.push(cmd.cmd);
             imgs = imgs + cmd.num;
-            mangas ++
+            mangas++;
         }
     }
 
@@ -158,8 +156,8 @@ function copyMangas() {
 async function getMangas() {
     var btns = Array.from($(".nes_custom .btn_get:not(.skip_manga)"));
     // .slice(0, 3);
-    var $mangas_info = $(".mangas_info")
-    $mangas_info.css({color:"",fontWeight:"bold"})
+    var $mangas_info = $(".mangas_info");
+    $mangas_info.css({ color: "", fontWeight: "bold" });
 
     for (var [i, btn] of btns.entries()) {
         await new Promise((solve) => {
@@ -169,11 +167,10 @@ async function getMangas() {
             var info = `${$(btn).attr("data-folder")} (${i + 1} of ${
                 btns.length
             })`;
-            $(".mangas_info").text("Doing... "+info);
-            if(i+1==btns.length){
-                $mangas_info.text("Done "+info);
-                $mangas_info.css({color:"green"})
-
+            $(".mangas_info").text("Doing... " + info);
+            if (i + 1 == btns.length) {
+                $mangas_info.text("Done " + info);
+                $mangas_info.css({ color: "green" });
             }
         });
     }
@@ -181,3 +178,36 @@ async function getMangas() {
 
 // skip done
 // red if 0 images done?
+
+var blacklist = ["furry", "futanari", "shemale", "yaoi"];
+var whitelist = [
+    "bath",
+    "big boobs",
+    "bikini",
+    "doujin",
+    "full color",
+    "kissing",
+    "school",
+];
+var $posts = $(".post");
+$posts.each((i, post) => {
+    var $post = $(post);
+    var $content = $post.find(".post-inner");
+    var $tags = $post.find(".post-tag > a");
+    $tags.each((i, tag) => {
+        var $tag = $(tag);
+        var tagname = tag.innerText.toLowerCase();
+        $tag.css({ color: "black", fontWeight: "bold" });
+
+        if (tagname.includesSome(blacklist)) {
+            $tag.css("color", "red");
+            $content.css("backgroundColor", "gray");
+            $post.css("opacity", 0.35);
+            $post.find("button.btn_skip").click();
+        } else if (tagname.includesSome(whitelist)) {
+            $tag.css("color", "blue");
+        }
+    });
+    //     var tags = Array.from($tags).map((tag)=>tag.innerText)
+    //     console.log(title, tags)
+});
