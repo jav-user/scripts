@@ -4,9 +4,18 @@ var loadMangasGUI = function () {
     var $custom_manga = $(`
         <div class="nes_custom">
             <div class="manga_info"></div>
-            <button class="btn_get">Get All</button>
-            
-            <center><button class="btn_copy" style="display:none">Copy</button></center>
+            <button class="btn_get">Get Comic</button>
+            <hr/>
+            <center>
+                <button class="btn_skip">Skip</button>
+                <button class="btn_noskip" style="display:none">
+                    No Skip
+                </button>
+                <hr/>
+                <button class="btn_copy" style="display:none">
+                    Copy
+                </button>
+            </center>
             <br/><br/>
         </div>`);
 
@@ -26,6 +35,23 @@ var loadMangasGUI = function () {
         });
 
         let $btn_copy = $el.find("button.btn_copy");
+        let $btn_skip = $el.find("button.btn_skip");
+        let $btn_noskip = $el.find("button.btn_noskip");
+
+        $btn_skip.on("click", function () {
+            $btn.addClass("skip_manga");
+            $btn.css({ color: "gray" });
+            $btn_skip.hide();
+            $btn_noskip.show();
+        });
+
+        $btn_noskip.on("click", function () {
+            $btn.removeClass("skip_manga");
+            $btn.css({ color: "", fontWeight: "bold" });
+            $btn_skip.show();
+            $btn_noskip.hide();
+        });
+
         $btn_copy.on("click", function () {
             let cmd = CMDS[folder];
             nes.copy(cmd.cmd);
@@ -82,6 +108,11 @@ var getManga = function ($el, solve) {
             };
 
             $info.text(`Done! (${imgurls.length} images)`);
+            var color = "red";
+            if (imgurls.length > 1) color = "orange";
+            if (imgurls.length > 5) color = "green";
+
+            $info.css({ color: color, fontWeight: "bold" });
             $btn.hide();
             $btn_copy.show();
             $("button.btn_copy_all").show();
@@ -118,7 +149,7 @@ function copyMangas() {
 }
 
 async function getMangas() {
-    var btns = Array.from($(".nes_custom .btn_get"));
+    var btns = Array.from($(".nes_custom .btn_get:not(.skip_manga)"));
     // .slice(0, 3);
     for (var [i, btn] of btns.entries()) {
         await new Promise((solve) => {
@@ -133,5 +164,4 @@ async function getMangas() {
     }
 }
 
-// skip
-// red if 0 images
+
