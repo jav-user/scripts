@@ -6,14 +6,14 @@ var loadMangasGUI = function () {
             <div class="manga_info"></div>
             <center>
                 <button class="btn_get">Get Comic</button>
+                
+                <button class="btn_copy" style="display:none">
+                    Copy
+                </button>
                 <hr/>
                 <button class="btn_skip">Skip</button>
                 <button class="btn_noskip" style="display:none">
                     No Skip
-                </button>
-                <hr/>
-                <button class="btn_copy" style="display:none">
-                    Copy
                 </button>
             </center>
             <br/><br/>
