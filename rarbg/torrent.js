@@ -1,5 +1,5 @@
 if (window.location.pathname.startsWith("/torrent/")) {
-
+    var Rarbg = db.collection("javuser").doc("Rarbg")
     var imgPlugins = {}
 
     var TorrentName = null
