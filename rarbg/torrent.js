@@ -73,8 +73,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
             console.log("imgSrc", img.src)
             var id = dominio.trim()
             var newSrc = imgPlugins[id] ? imgPlugins[id](img.src, link) : img.src
-            var mPlug = Rarbg.collection("missingPlugins").doc(id)
-            var iPlug = Rarbg.collection("imgPlugins").doc(id)
+           
             if (img.src != newSrc) {
                 console.log("newSrc: " + newSrc)
                 img.src = newSrc
@@ -96,8 +95,9 @@ if (window.location.pathname.startsWith("/torrent/")) {
                     date: Date.now(),
                     dateStr: new Date().toString()
                 }
-
-
+             var mPlug = Rarbg.collection("missingPlugins").doc(id)
+             var iPlug = Rarbg.collection("imgPlugins").doc(id)
+        
                 batch.set(mPlug, doc)
                     //try{
                 batch.set(iPlug, {
