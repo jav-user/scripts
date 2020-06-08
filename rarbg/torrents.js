@@ -1,4 +1,6 @@
 if (window.location.pathname.startsWith("/torrents.php")) {
+    
+    var Rarbg = db.collection("javuser").doc("Rarbg")
 
     String.prototype.toByte = function() {
         var str = this.toString()
