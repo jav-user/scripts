@@ -4,7 +4,7 @@
     nes.addScriptOnce(nes.cdn("firebase-firestore"), "fb-store",1);
 
 
-    setTimeout(_)=>{
+    setTimeout((_)=>{
     // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyA8st5ho2vz3OKWgIBeCTtJn6w-z_njOJ4",
