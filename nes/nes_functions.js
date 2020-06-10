@@ -226,18 +226,18 @@ const _nes = function () {
                 },
             },
             "firebase-app": {
-                mask: "https://www.gstatic.com/firebasejs/$v/firebase-app.js",
+                mask: "https://www.gstatic.com/firebasejs/$v$/firebase-app.js",
                 v:{
                     7: "7.14.4",
                 }
             },
               "firebase-database": {
-                mask: "https://www.gstatic.com/firebasejs/$v/firebase-database.js",
+                mask: "https://www.gstatic.com/firebasejs/$v$/firebase-database.js",
                 v:{
                     7: "7.14.4",
                 }
             }, "firebase-firestore": {
-                mask: "https://www.gstatic.com/firebasejs/$v/firebase-firestore.js",
+                mask: "https://www.gstatic.com/firebasejs/$v$/firebase-firestore.js",
                 v:{
                     7: "7.14.4",
                 }
