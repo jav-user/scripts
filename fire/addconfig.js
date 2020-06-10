@@ -1,5 +1,5 @@
     var mask ="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"
-    nes.addScriptOnce(nes.cdn("firebase-app"), "fb-app",1);
+    nes.addScriptOnce(nes.cdn("firebase-app"), "fb-app");
     nes.addScriptOnce(nes.cdn("firebase-database"), "fb-db",1);
     nes.addScriptOnce(nes.cdn("firebase-firestore"), "fb-store",1);
 
