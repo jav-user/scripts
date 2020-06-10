@@ -218,13 +218,30 @@ const _nes = function () {
     x.cdn = function (_lib, v, min) {
         var libs = {
             jquery: {
-                mask: "https://code.jquery.com/jquery-$v$$min$js",
+                mask: "https://code.jquery.com/jquery-$v$.$min$js",
                 v: {
                     3: "3.5.1",
                     2: "2.2.4",
                     1: "1.12.4",
                 },
             },
+            "firebase-app": {
+                mask: "https://www.gstatic.com/firebasejs/$v/firebase-app.js",
+                v:{
+                    7: "7.14.4",
+                }
+            },
+              "firebase-database": {
+                mask: "https://www.gstatic.com/firebasejs/$v/firebase-database.js",
+                v:{
+                    7: "7.14.4",
+                }
+            }, "firebase-firestore": {
+                mask: "https://www.gstatic.com/firebasejs/$v/firebase-firestore.js",
+                v:{
+                    7: "7.14.4",
+                }
+            }
         };
 
         var getCdn = function () {
@@ -232,8 +249,9 @@ const _nes = function () {
             v = v ? v : Object.keys(lib.v).sort().reverse()[0];
             min = min ? "min." : "";
             return lib.mask
-                .replace("$v$", lib.v[v] + ".")
-                .replace("$min$", min);
+                .replace("$v$", lib.v[v])
+                .replace("$min$", min)
+                .replace("..",".");
         };
 
         return getCdn();
