@@ -3,6 +3,7 @@
     nes.addScriptOnce(nes.cdn("firebase-database"), "fb-db",1);
     nes.addScriptOnce(nes.cdn("firebase-firestore"), "fb-store",1);
 
+    const db;
 
     setTimeout((_)=>{
     // Your web app's Firebase configuration
@@ -17,8 +18,8 @@
     measurementId: "G-498QT6E8S5"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore()
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore()
     
     
     },3*1000)
