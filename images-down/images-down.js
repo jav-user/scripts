@@ -8,6 +8,8 @@
 // ==/UserScript==
 
 var fsDomain = null;
+var domainPaths = []
+var indexPath = 0
 
 nes.addScript("https://jav-user.github.io/scripts/nes/nes_functions.js", "nes");
 nes.addScript("https://jav-user.github.io/scripts/nes/nes_manga.js", "nesmg");
@@ -48,7 +50,9 @@ var createGUI = function (query, rx) {
         <b>Query:</b> 
           <input id="query" type="text" value='${query}' size="${query.length}"/>
           <button id="query-test" class="nes-form">Test</button> 
-          <button id="query-default" class="nes-form">Default</button> 
+          <button id="query-default" class="nes-form">Default</button>
+          <button name="delete" class="nes-form">Delete</button> 
+          <button name="change" class="nes-form">Change</button> 
           <button name="save" class="nes-form">Save</button> 
         <br/><br/>
         <b>Folder:</b> 
@@ -57,7 +61,9 @@ var createGUI = function (query, rx) {
         <br/><br/>
         <b>Match:</b> 
           <input id="rx" type="text" value="${rx}" size="${rx.length}"  />
-          <button id="rx-default" class="nes-form">Default</button> 
+          <button id="rx-default" class="nes-form">Default</button>
+          <button name="delete" class="nes-form">Delete</button>
+          <button name="change" class="nes-form">Change</button>  
           <button name="save" class="nes-form">Save</button> 
         </span>
     </div>
@@ -75,6 +81,8 @@ var createGUI = function (query, rx) {
   $btnRxDefault = $el.find("#rx-default");
 
   $btnSave = $el.find("[name='save']");
+  $btnDelete = $el.find("[name='delete']");
+  $btnChange = $el.find("[name='change']");
 
   $btnQueryTest.on("click", () => {
     console.clear();
@@ -128,6 +136,23 @@ var createGUI = function (query, rx) {
     }
   });
 
+  $btnDelete.on("click",()=>{
+    let rx = $rx.val().trim();
+    var pathid = CryptoJS.MD5(rx).toString();
+    fsDomain.collection("paths").doc(pathid).delete()
+  })
+
+  $btnChane.on("click",()=>{
+    indexPath++
+    if(domainPaths.length>=indexPath){
+      indexPath = 0
+    }
+    let path = domainPaths[indexPath]
+    $rx.val(path.rx)
+    $query.val(path.query)
+    matchPath();
+  })
+
   var matchPath = () => {
     var test = window.location.pathname.match($rx.val());
     console.log($rx.val());
@@ -138,7 +163,7 @@ var createGUI = function (query, rx) {
     }
   };
 
-  matchPath($el.find("#rx"));
+  matchPath();
 
   $el.find("#toggle-show").on("click", function () {
     $el.find(".nes-form").fadeToggle();
@@ -194,10 +219,15 @@ window.onload = function () {
         for (var sn of paths) {
           var _path = sn.data();
           if (window.location.pathname.match(_path.rx)) {
-            path = _path;
-            break;
+            path = Object.keys(path)>0 ? path : _path;
+            domainPaths.push(_path)
           }
         }
+
+        // for(var sn of paths){
+        //   let _path = sn.data()
+        //   domainPaths.push(_path)
+        // }
 
         createGUI(path.query, path.rx);
         console.log(path);
