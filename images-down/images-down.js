@@ -4,7 +4,7 @@
 
 // @grant none
 // @require https://jav-user.github.io/scripts/nes/nes_functions.js?a=6
-// @require https://jav-user.github.io/scripts/get-images/get-images.js?a=6
+// @require https://jav-user.github.io/scripts/images-down/images-down.js?a=6
 // ==/UserScript==
 
 var fsDomain = null;
