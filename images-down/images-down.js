@@ -20,7 +20,7 @@ nes.addScript(
 nes.addScript(
   "https://jav-user.github.io/scripts/fire/addconfig.js",
   "fireconfig",
-  0.5
+  0
 );
 
 
@@ -206,7 +206,7 @@ var getLines = function (imgs, folder) {
   return `D:\n${lines.join("\n")}\n`;
 };
 
-window.onload = function () {
+//window.onload = function () {
   setTimeout((_) => {
     fsDomain = db.collection("getimgs_domains").doc(window.location.hostname);
     fsDomain
@@ -233,4 +233,4 @@ window.onload = function () {
         console.log(path);
       });
   }, 3.5 * 1000);
-};
+//};
