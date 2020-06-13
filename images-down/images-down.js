@@ -35,7 +35,7 @@ var createGUI = function (query, rx) {
   var queryDefault = `Array.from($("img")).map(img=>img.src).unique()`;
   query = query ? query : queryDefault;
 
-  var folder = $("title").text().toValidFileName() + " $pp";
+  var folder = $("title").text().toValidFileName() + " $pp$";
 
   if (!rx) {
     rx = window.location.pathname;
