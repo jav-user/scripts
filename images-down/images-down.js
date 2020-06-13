@@ -219,7 +219,7 @@ var getLines = function (imgs, folder) {
         for (var sn of paths) {
           var _path = sn.data();
           if (window.location.pathname.match(_path.rx)) {
-            path = Object.keys(path)>0 ? path : _path;
+            path = Object.keys(path).length>0 ? path : _path;
             console.log("path", path)
             domainPaths.push(_path)
           }
