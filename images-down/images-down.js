@@ -220,6 +220,7 @@ var getLines = function (imgs, folder) {
           var _path = sn.data();
           if (window.location.pathname.match(_path.rx)) {
             path = Object.keys(path)>0 ? path : _path;
+            console.log("path", path)
             domainPaths.push(_path)
           }
         }
