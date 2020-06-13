@@ -144,7 +144,7 @@ var createGUI = function (query, rx) {
 
   $btnChange.on("click",()=>{
     indexPath++
-    if(domainPaths.length>=indexPath){
+    if(indexPath>=domainPaths.length){
       indexPath = 0
     }
     let path = domainPaths[indexPath]
