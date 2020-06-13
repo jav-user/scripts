@@ -88,7 +88,7 @@ var createGUI = function (query, rx) {
     console.clear();
     let query = $query.val().trim();
     let imgs = getImgsByQuery(query);
-    console.log("imgs", imgs);
+    console.log("imgs", imgs.join("\n"));
     alert(`Tested ${imgs.length} images!!`);
   });
 
