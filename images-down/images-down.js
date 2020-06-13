@@ -142,7 +142,7 @@ var createGUI = function (query, rx) {
     fsDomain.collection("paths").doc(pathid).delete()
   })
 
-  $btnChane.on("click",()=>{
+  $btnChange.on("click",()=>{
     indexPath++
     if(domainPaths.length>=indexPath){
       indexPath = 0
