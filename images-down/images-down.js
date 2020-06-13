@@ -25,8 +25,12 @@ nes.addScript(
 
 
 var createGUI = function (query, rx) {
- //if($) console.log("$", $);
-  $ = jQuery;
+  try{
+    console.log("$", $);
+    $ = jQuery;
+  }catch(err){
+    console.log("err",err)
+  }
   var queryDefault = `Array.from($("img")).map(img=>img.src).unique()`;
   query = query ? query : queryDefault;
 
