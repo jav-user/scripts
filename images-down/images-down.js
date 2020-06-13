@@ -12,8 +12,9 @@ var domainPaths = []
 var indexPath = 0
 
 //nes.addScript("https://jav-user.github.io/scripts/nes/nes_functions.js", "nes");
+nes.addScriptOnce(nes.cdn("jquery"), "jq");
 nes.addScript("https://jav-user.github.io/scripts/nes/nes_manga.js", "nesmg");
-nes.addScript(
+nes.addScriptOnce(
   "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.js",
   "cryptoJs"
 );
