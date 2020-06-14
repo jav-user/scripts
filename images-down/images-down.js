@@ -191,7 +191,7 @@ var getImgsByQuery = function (query) {
   try {
     console.log("query", query);
     var imgs = eval(query);
-    return imgs;
+    return imgs.unique().filter(el=>el);
   } catch (err) {
     alert("Error at getImgsByQuery");
     console.log("error at getImgsByQuery: ", err);
