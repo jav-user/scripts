@@ -257,29 +257,33 @@ const _nes = function () {
         return getCdn();
     };
     
+    x.fileSizeRx = /^[0-9]{1,}[.]{0,1}[0-9]{0,}[ ]{0,}[kmg]{0,1}[b]$/
+    
     x.getFileSize=function(str, _type){
-var str = str.trim().toLowerCase()
-str = str.replace("bytes","b")
+        var str = str.trim().toLowerCase()
+        str = str.replace("bytes","b")
 
-var match = /^[0-9]{1,}[.]{0,1}[0-9]{0,}[ ]{0,}[kmg]{0,1}[b]$/
-if(!str.match(match)) return false
+        var match = x.fileSizeRx
+        if(!str.match(match)) return false
 
-var num = str.match(/[0-9]{1,}[.]{0,1}[0-9]{0,}/)[0]
-num = Number.parseFloat(num)
+        var num = str.match(/[0-9]{1,}[.]{0,1}[0-9]{0,}/)[0]
+        num = Number.parseFloat(num)
 
-var type = str.match(/[kmg]{0,1}[b]/)[0]
+        var type = str.match(/[kmg]{0,1}[b]/)[0]
 
-var types ={
-    b: 1,
-    kb: Math.pow(10,3),
-    mb: Math.pow(10,6),
-    gb: Math.pow(10,9),
-}
-//console.log(num, type, types[type])
-if(!_type) return num*types[type]
+        var types ={
+            b: 1,
+            kb: Math.pow(10,3),
+            mb: Math.pow(10,6),
+            gb: Math.pow(10,9),
+        }
 
-return (num*types[type])/types[_type.toLowerCase()]
-}
+        if(!_type) return num*types[type]
+
+        return (num*types[type])/types[_type.toLowerCase()]
+    }
+
+    
     
     String.prototype.toValidFileName = function() {
     return this
