@@ -45,12 +45,37 @@ if (window.location.pathname.startsWith("/torrent/")) {
             });
     };
 
+    const getTblData = () => {
+        var $table = $("table.lista").eq(0);
+        console.log("$table", $table);
+
+        var $trs = $table.children("tbody").children("tr");
+        const tbldata = {};
+        $trs.each((i, tr) => {
+            var $tds = $(tr).children("td");
+            var key = $tds
+                .eq(0)
+                .text()
+                .toLowerCase()
+                .replace(/[:]/g, "")
+                .trim();
+            var val = {
+                text: $tds.eq(1).text().replace(/[\n]/g, ""),
+                html: `<div>${$tds.eq(1).html()}</div>`,
+            };
+            // $tds.eq(1).text().replace(/[\n\t]/g," ").trim()
+            tbldata[key] = val;
+        });
+
+        return tbldata;
+    };
+
     getPlugins().then((plugins) => {
         imgPlugins = plugins;
         const batch = db.batch();
         $("#description img").each((i, img) => {
             var imgurl = new URL(img.src);
-            var link = $(img).parent().attr("href")
+            var link = $(img).parent().attr("href");
             console.log("imgSrc", img.src);
             var id = imgurl.hostname;
             var newSrc = imgPlugins[id]
@@ -91,51 +116,25 @@ if (window.location.pathname.startsWith("/torrent/")) {
         });
     });
 
-
     //TorrentName
-   
-    TorrentName = $("h1").text();
 
     //TorrentSize
-    const getTblData = ()=>{
-        var $table = $("table.lista").eq(0);
-        console.log("$table", $table);
+    const tblData = getTblData();
 
-        var $trs = $table.children("tbody").children("tr");
-        const tbldata = {};
-        $trs.each((i, tr) => {
-            var $tds = $(tr).children("td");
-            var key = $tds
-                .eq(0)
-                .text()
-                .toLowerCase()
-                .replace(/[:]/g, "")
-                .trim();
-            var val = {
-                text: $tds.eq(1).text().replace(/[\n]/g, ""),
-                html: `<div>${$tds.eq(1).html()}</div>`,
-            };
-            // $tds.eq(1).text().replace(/[\n\t]/g," ").trim()
-            tbldata[key] = val;
-        });
-
-        return tbldata
-    }
-    
-    const tblData = getTblData()    
-     
     console.log("tblData", tblData);
-    
+
+    TorrentName = $("h1").text();
+
     TorrentSize = tblData.size.text;
 
     $("h1").text(TorrentName + ` [${TorrentSize}]`);
 
-    TorrentPoster = $(tblData.poster.html).find("img").attr("src")
+    TorrentPoster = $(tblData.poster.html).find("img").attr("src");
 
     //MagnetOnClick
-    var links = Array.from($("a[href]")).filter(a=>a.href)
-    var mgt = links.filter(a => a.href.startsWith("magnet:"))[0];
-    var tor = links.filter(a => a.href.endsWith(".torrent"))[0];
+    var links = Array.from($("a[href]")).filter((a) => a.href);
+    var mgt = links.filter((a) => a.href.startsWith("magnet:"))[0];
+    var tor = links.filter((a) => a.href.endsWith(".torrent"))[0];
 
     mgt.onclick = function () {
         var torrent = {
