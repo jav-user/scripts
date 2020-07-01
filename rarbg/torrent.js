@@ -8,7 +8,7 @@ if (window.location.pathname.startsWith("/torrent/")) {
     var TorrentPoster = null;
     var clicked = false;
 
-    var imgPlugins = {};
+    imgPlugins = {};
     // var batch = db.batch();
 
     //Inicia
@@ -17,32 +17,19 @@ if (window.location.pathname.startsWith("/torrent/")) {
         var strPlugins = Lockr.get("strPlugins");
         console.log("strPluginsOff", strPlugins);
         $("h1").css("color", "purple");
-        return ImgPluginsRef.get()
-            .then((q) => {
-                if (q.size) {
-                    q.forEach((doc) => {
-                        var fn = doc.data().f;
-                        if (fn) strPlugins[doc.id] = fn;
-                    });
-                    $("h1").css("color", "green");
-                    console.log("connected!!");
-                    Lockr.set("strPlugins", strPlugins);
-                }
+        return ImgPluginsRef.get().then((q) => {
+            if (q.size) {
+                q.forEach((doc) => {
+                    var fn = doc.data().f;
+                    if (fn) strPlugins[doc.id] = fn;
+                });
+                $("h1").css("color", "green");
+                console.log("connected!!");
+                Lockr.set("strPlugins", strPlugins);
+            }
 
-                return strPlugins;
-            })
-            .then((strPlugins) => {
-                console.log("strPlugins", strPlugins);
-                var imgPlugins = {};
-                for (var id in strPlugins) {
-                    var fn = strPlugins[id];
-                    imgPlugins[id] = function (imgSrc, link) {
-                        console.log(id, fn);
-                        return eval(fn);
-                    };
-                }
-                return imgPlugins;
-            });
+            return strPlugins;
+        });
     };
 
     const getTblData = () => {
@@ -71,17 +58,20 @@ if (window.location.pathname.startsWith("/torrent/")) {
     };
 
     getPlugins().then((plugins) => {
-        imgPlugins = plugins;
+        // imgPlugins = plugins;
+        strPlugins = plugins;
         const batch = db.batch();
         $("#description img").each((i, img) => {
             var imgurl = new URL(img.src);
             var link = $(img).parent().attr("href");
             console.log("imgSrc", img.src);
             var id = imgurl.hostname;
-            var newSrc = imgPlugins[id]
-                ? imgPlugins[id](img.src, link)
-                : img.src;
-
+            console.log("imgid", id);
+            console.log("plugin...", id, imgPlugins[id]);
+            var imgSrc = img.src;
+            var newSrc = strPlugins[id] ? eval(strPlugins[id]) : img.src;
+            console.log("plugin", id, imgPlugins[id]);
+            // console.log("strplugin",strPlugins[id])
             const ImgRef = ImgPluginsRef.doc(id);
             const MissingImgRef = MissingPluginsRef.doc(id);
 
@@ -94,6 +84,8 @@ if (window.location.pathname.startsWith("/torrent/")) {
                 batch.update(ImgRef, { hasf: true });
                 batch.delete(MissingImgRef);
             } else {
+                console.log("imgsrc: " + img.src);
+                console.log("newSrc: " + newSrc);
                 var doc = {
                     page: window.location.href,
                     imgSrc: img.src,
