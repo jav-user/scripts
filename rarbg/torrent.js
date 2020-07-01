@@ -1,154 +1,143 @@
 if (window.location.pathname.startsWith("/torrent/")) {
-    var Rarbg = db.collection("javuser").doc("Rarbg")
-    var imgPlugins = {}
+    const RarbgRef = db.collection("javuser").doc("Rarbg");
+    const ImgPluginsRef = RarbgRef.collection("imgPlugins");
+    const MissingPluginsRef = RarbgRef.collection("missingPlugins");
 
-    var TorrentName = null
-    var TorrentSize = null
-    var TorrentPoster = null
-    var clicked = false
-    var batch = db.batch()
+    var TorrentName = null;
+    var TorrentSize = null;
+    var TorrentPoster = null;
+    var clicked = false;
 
-    //Iniciar
+    var imgPlugins = {};
+    // var batch = db.batch();
 
+    //Inicia
 
-    Rarbg
-        .collection("imgPlugins")
-        .get()
-        .then(q => {
-
-            var strPlugins = {}
-
-
-            if (q.size) {
-                console.log("Conected!!")
-                document.querySelector("h1").style.color = "green"
-                q.forEach(doc => {
-                    var fn = doc.data().f
-                    if (fn) {
-                        strPlugins[doc.id] = fn
-                        imgPlugins[doc.id] = function(imgSrc, link) {
-                            console.log(doc.id, fn)
-                            return eval(fn)
-                        }
-                    }
-                })
-                Lockr.set("strPlugins", strPlugins)
-                
-                console.log("imgPlugins", imgPlugins)
-                console.log("strPlugins", strPlugins)
-                doImages()
-                batch.commit()
-            } else {
-                console.log("not connected");
-                document.querySelector("h1").style.color = "purple"
-                var strPlugins = Lockr.get("strPlugins")
-                for (var id in strPlugins) {
-                    var fn = strPlugins[id]
-                    imgPlugins[id] = function(imgSrc, link) {
-                        console.log(id, fn)
-                        return eval(fn)
-                    }
+    const getPlugins = () => {
+        var strPlugins = Lockr.get("strPlugins");
+        console.log("strPluginsOff", strPlugins);
+        $("h1").css("color", "purple");
+        return ImgPluginsRef.get()
+            .then((q) => {
+                if (q.size) {
+                    q.forEach((doc) => {
+                        var fn = doc.data().f;
+                        if (fn) strPlugins[doc.id] = fn;
+                    });
+                    $("h1").css("color", "green");
+                    console.log("connected!!");
+                    Lockr.set("strPlugins", strPlugins);
                 }
-                
-                console.log("imgPlugins", imgPlugins)
-                console.log("strPlugins", strPlugins)
-                doImages()
-                batch.commit()
-            }
 
+                return strPlugins;
+            })
+            .then((strPlugins) => {
+                console.log("strPlugins", strPlugins);
+                var imgPlugins = {};
+                for (var id in strPlugins) {
+                    var fn = strPlugins[id];
+                    imgPlugins[id] = function (imgSrc, link) {
+                        console.log(id, fn);
+                        return eval(fn);
+                    };
+                }
+                return imgPlugins;
+            });
+    };
 
+    getPlugins().then((plugins) => {
+        imgPlugins = plugins;
+        const batch = db.batch();
+        $("#description img").each((i, img) => {
+            var imgurl = new URL(img.src);
+            var link = $(img).parent().attr("href")
+            console.log("imgSrc", img.src);
+            var id = imgurl.hostname;
+            var newSrc = imgPlugins[id]
+                ? imgPlugins[id](img.src, link)
+                : img.src;
 
+            const ImgRef = ImgPluginsRef.doc(id);
+            const MissingImgRef = MissingPluginsRef.doc(id);
 
-
-        })
-        //     .catch(err => {
-        //         console.log("err", err)
-
-    // })
-
-    var doImages = function(err) {
-        document.querySelectorAll("#description img").forEach(img => {
-            var dominio = img.src.split("/")[2]
-            var link = img.parentNode.href
-            console.log("imgSrc", img.src)
-            var id = dominio.trim()
-            var newSrc = imgPlugins[id] ? imgPlugins[id](img.src, link) : img.src
-           
             if (img.src != newSrc) {
-                console.log("newSrc: " + newSrc)
-                img.src = newSrc
-                img.style.maxWidth = "750px"
-                img.parentNode.href = newSrc
-                batch.delete(mPlug)
+                console.log("newSrc: " + newSrc);
+                img.src = newSrc;
+                img.style.maxWidth = "750px";
+                img.parentNode.href = newSrc;
 
-                batch.update(iPlug, {
-                    hasf: true
-                })
-
-
+                batch.update(ImgRef, { hasf: true });
+                batch.delete(MissingImgRef);
             } else {
-
                 var doc = {
                     page: window.location.href,
                     imgSrc: img.src,
-                    link: link,
+                    // link: link,
                     date: Date.now(),
-                    dateStr: new Date().toString()
-                }
-             var mPlug = Rarbg.collection("missingPlugins").doc(id)
-             var iPlug = Rarbg.collection("imgPlugins").doc(id)
-        
-                batch.set(mPlug, doc)
-                    //try{
-                batch.set(iPlug, {
-                        hasf: false
-                    }, {
-                        merge: true
-                    })
-                    //  }catch(err){console.log("err",err)}
+                    dateStr: new Date().toString(),
+                };
+
+                batch.set(MissingImgRef, doc);
+                batch.set(
+                    ImgRef,
+                    {
+                        hasf: false,
+                    },
+                    {
+                        merge: true,
+                    }
+                );
             }
-        })
-    }
-
-
-    // var trs = Array.from(table.children[0].querySelectorAll(":scope > tr"))
-    // trs.forEach(tr=>console.log(tr.children[0].innerText))
-
-    // var table = document.querySelectorAll("table.lista")[0]
-    // var trs = Array.from(table.children[0].querySelectorAll(":scope > tr"))
-    // var queryTD = function(q) {
-    //     return trs.filter(tr => tr.children[0].innerText.trim().toLowerCase().startsWith(q.toLowerCase()))[0].children[1]
-    // }
+        });
+    });
 
 
     //TorrentName
-    var h1 = document.querySelector("h1")
-    TorrentName = h1.innerText
+   
+    TorrentName = $("h1").text();
 
     //TorrentSize
-    var tds = document.querySelectorAll("table tr td.lista")
-    var arr = Array
-        .from(tds)
-        .map(td => td.innerText.trim())
-        .filter(txt => txt.endsWith("MB") || txt.endsWith("GB"))
-    TorrentSize = arr[0]
+    const getTblData = ()=>{
+        var $table = $("table.lista").eq(0);
+        console.log("$table", $table);
 
+        var $trs = $table.children("tbody").children("tr");
+        const tbldata = {};
+        $trs.each((i, tr) => {
+            var $tds = $(tr).children("td");
+            var key = $tds
+                .eq(0)
+                .text()
+                .toLowerCase()
+                .replace(/[:]/g, "")
+                .trim();
+            var val = {
+                text: $tds.eq(1).text().replace(/[\n]/g, ""),
+                html: `<div>${$tds.eq(1).html()}</div>`,
+            };
+            // $tds.eq(1).text().replace(/[\n\t]/g," ").trim()
+            tbldata[key] = val;
+        });
 
-    h1.innerText = TorrentName + ` [${TorrentSize}]`
+        return tbldata
+    }
+    
+    const tblData = getTblData()    
+     
+    console.log("tblData", tblData);
+    
+    TorrentSize = tblData.size.text;
 
-    //TorrentPoster
-    var tdPoster = Array.from(document.querySelectorAll("td"))
-        .filter(td => td.innerText.trim().startsWith("Poster"))[0]
+    $("h1").text(TorrentName + ` [${TorrentSize}]`);
 
-    TorrentPoster = tdPoster.parentNode.querySelector("img").src
+    TorrentPoster = $(tblData.poster.html).find("img").attr("src")
 
     //MagnetOnClick
-    var as = document.querySelectorAll("a[href]")
-    var mgt = Array.from(as).filter(a => a.href.startsWith("magnet:"))[0]
-    var tor = Array.from(as).filter(a => a.href.endsWith(".torrent"))[0]
+    var links = Array.from($("a[href]")).filter(a=>a.href)
+    var mgt = links.filter(a => a.href.startsWith("magnet:"))[0];
+    var tor = links.filter(a => a.href.endsWith(".torrent"))[0];
 
-    mgt.onclick = function() {
-
+    mgt.onclick = function () {
         var torrent = {
             name: TorrentName,
             size: TorrentSize,
@@ -158,24 +147,22 @@ if (window.location.pathname.startsWith("/torrent/")) {
             magnet: mgt.href,
             date: Date.now(),
             dateStr: new Date().toString(),
-        }
+        };
 
         if (!clicked) {
-            Rarbg.collection("Torrents").doc(`${TorrentName} [${TorrentSize}]`).set(torrent)
-                .then(r => {
-                    clicked = true
-                    mgt.parentNode.style.backgroundColor="#B9E5FF"
-                    console.log(mgt.parentNode)
-                    console.log("clicked")
-                })
-
+            RarbgRef.collection("Torrents")
+                .doc(`${TorrentName} [${TorrentSize}]`)
+                .set(torrent)
+                .then((r) => {
+                    clicked = true;
+                    mgt.parentNode.style.backgroundColor = "#B9E5FF";
+                    console.log(mgt.parentNode);
+                    console.log("clicked");
+                });
         } else {
-            console.log("Already clicked!!")
+            console.log("Already clicked!!");
         }
 
         // clicked = true
-    }
-
-
-
+    };
 }
