@@ -1,0 +1,9 @@
+.nes_element #getpages.success {
+  font-weight: bold;
+  color: green;
+}
+
+.nes_element #getpages.error {
+  font-weight: bold;
+  color: red;
+}
