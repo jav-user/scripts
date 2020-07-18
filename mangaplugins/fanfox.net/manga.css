@@ -1,3 +1,12 @@
+ul.detail-main-list > li {
+  background-color: white;
+}
+
+ul.detail-main-list > li a div {
+  background-color: white;
+}
+
+
 ul.detail-main-list > li.selected {
   background-color: #ffae00;
   font-weight: bold;
