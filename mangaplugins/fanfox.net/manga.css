@@ -1,0 +1,19 @@
+ul.detail-main-list > li.selected {
+  background-color: #ffae00;
+  font-weight: bold;
+}
+
+ul.detail-main-list > li.selected a div {
+  background-color: #ffae00;
+  font-weight: bold;
+}
+
+ul.detail-main-list > li.got {
+  background-color: green;
+  font-weight: bold;
+}
+
+ul.detail-main-list > li.got a div {
+  background-color: green;
+  font-weight: bold;
+}
