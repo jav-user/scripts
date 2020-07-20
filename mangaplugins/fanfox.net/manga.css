@@ -18,7 +18,7 @@ ul.detail-main-list > li.selected a div {
 }
 
 ul.detail-main-list > li.processing {
-  background-color: green;
+  background-color: #9EF1E4;
   font-weight: bold;
 }
 
@@ -28,7 +28,7 @@ ul.detail-main-list > li.processing a div {
 }
 
 ul.detail-main-list > li.success {
-  background-color: #9EF1E4;
+  background-color: green;
   font-weight: bold;
 }
 
