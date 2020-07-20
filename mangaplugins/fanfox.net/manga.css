@@ -17,12 +17,22 @@ ul.detail-main-list > li.selected a div {
   font-weight: bold;
 }
 
-ul.detail-main-list > li.got {
+ul.detail-main-list > li.processing {
   background-color: green;
   font-weight: bold;
 }
 
-ul.detail-main-list > li.got a div {
+ul.detail-main-list > li.processing a div {
+  background-color: #9EF1E4;
+  font-weight: bold;
+}
+
+ul.detail-main-list > li.success {
+  background-color: #9EF1E4;
+  font-weight: bold;
+}
+
+ul.detail-main-list > li.success a div {
   background-color: green;
   font-weight: bold;
 }
