@@ -27,6 +27,11 @@ ul.detail-main-list > li.processing a div {
   font-weight: bold;
 }
 
+ul.detail-main-list > li button.processing {
+  background-color: #9EF1E4;
+  font-weight: bold;
+}
+
 ul.detail-main-list > li.success {
   background-color: green;
   font-weight: bold;
@@ -35,4 +40,11 @@ ul.detail-main-list > li.success {
 ul.detail-main-list > li.success a div {
   background-color: green;
   font-weight: bold;
+  color: white;
+}
+
+ul.detail-main-list > li button.success {
+  background-color: green;
+  font-weight: bold;
+  color: white;
 }
