@@ -5,7 +5,7 @@ ul.detail-main-list > li {
 ul.detail-main-list > li a div {
   background-color: #ededed;
 }
-ul.detail-main-list > li a button {
+ul.detail-main-list > li button {
   background-color: white;
   border: none;
 }
