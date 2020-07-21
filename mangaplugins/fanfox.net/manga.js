@@ -33,7 +33,7 @@ function createGUI() {
 	);
 
 	$menu.find(`[name=select-all]`).on("change", selectAll);
-	$menu.find(`[name=get-interval]`).on("click", getInterval);
+	$menu.find(`[name=get-interval]`).on("click", () => getInterval());
 	$menu.find(`[name=get-selected]`).on("click", () => getSelected());
 	$menu.find(`[name=copy-selected]`).on("click", () => copySelected());
 
@@ -80,6 +80,32 @@ function createGUI() {
 	menuCtrl();
 }
 
+async function getInterval() {
+	console.log("interval....");
+	var [start, end] = getSelectedIds();
+	var ids = [];
+	$chapters.each((i, chapter) => {
+		var id = getChapterId($(chapter));
+		if (id >= start && id <= end) {
+			ids.push(id);
+		}
+	});
+	ids = ids.sort();
+	ids = ids.filter((id) => !chapters[id].cmdlines);
+
+	console.log("ids", ids);
+
+	for (var i = 0; i < ids.length; i++) {
+		var id = ids[i];
+		console.log("id", id);
+		await new Promise((solve) => getChapter(id, solve));
+		chapters[id].$chapter
+			.find("[name=select]")
+			.prop("checked", true)
+			.trigger("change");
+	}
+}
+
 var getChapterId = ($chapter) => {
 	var name = $chapter.find(".title3").text().trim().toValidFileName();
 	return name.split("-")[0].trim();
@@ -120,50 +146,50 @@ function selectAll() {
 	chaptersCtrl();
 }
 
-function getInterval() {}
+// function getInterval() {}
 
 function selectChapter() {
 	menuCtrl();
 	chaptersCtrl();
 }
 
-function copyChapter(id){
+function copyChapter(id) {
 	var lines = chapters[id].cmdlines;
 	var cmd = `D:\n${lines.join("\n")}\n`;
 	console.log(cmd);
 	nes.copy(cmd);
 }
 
-function getSelectedIds(){
+function getSelectedIds() {
 	return Array.from($lista.children("li.selected"))
-	.map(chapter=>getChapterId($(chapter))).sort()
+		.map((chapter) => getChapterId($(chapter)))
+		.sort();
 }
 
-async function getSelected(){
+async function getSelected() {
 	var ids = getSelectedIds();
-	ids=ids.filter(id=>!chapters[id].cmdlines)
-	for(var i=0; i<ids.length; i++){
+	ids = ids.filter((id) => !chapters[id].cmdlines);
+	for (var i = 0; i < ids.length; i++) {
 		var id = ids[i];
-		await new Promise(solve=>getChapter(id,solve));
+		await new Promise((solve) => getChapter(id, solve));
 	}
 
 	console.log(chapters);
-	
 }
 
-function copySelected(){
+function copySelected() {
 	var cmdlines = [];
 	var ids = getSelectedIds();
-	ids.forEach(id=>{
+	ids.forEach((id) => {
 		var lines = chapters[id].cmdlines;
-		$.merge(cmdlines, lines);		
-	})
+		$.merge(cmdlines, lines);
+	});
 
 	// var lines = chapters[id].cmdlines;
 	var cmd = `D:\n${cmdlines.join("\n")}\n`;
 	console.log(cmd);
 	nes.copy(cmd);
-	alert(`Copied ${ids.length} chapters and ${cmdlines.length} pages.`)
+	alert(`Copied ${ids.length} chapters and ${cmdlines.length} pages.`);
 }
 
 async function getChapter(id, solve) {
@@ -204,7 +230,7 @@ async function getChapter(id, solve) {
 
 		return ajaxChapter($data, data).then((res) => {
 			chapter.$chapter.find("[name=copy]").show();
-			console.log("res",res);
+			console.log("res", res);
 			return res;
 		});
 	});
@@ -217,7 +243,6 @@ async function getChapter(id, solve) {
 		.addClass("success");
 	if (solve) solve();
 }
-
 
 var getChapterCID = (html) => {
 	var test = html.match("var[ ]{0,}chapterid[ ]{0,}=[0-9]{1,};");
