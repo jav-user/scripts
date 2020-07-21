@@ -12,7 +12,7 @@ vm.getLines = function (imgurls, folder){
     NUM = imgurls.length
     imgurls.forEach((imgu,i)=>{
         let num = `000000000${i+1}`.substr(-5)
-        let line = `ndown "${imgu}=${num}" "${folder.trim()} ${NUM}pp" "${window.location.host}"`;
+        let line = `nddown "${imgu}=${num}" "${folder.trim()} ${NUM}pp" "${window.location.host}"`;
         lines.push(line)
     })
     return lines.join("\n")
