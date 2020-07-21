@@ -5,7 +5,10 @@ ul.detail-main-list > li {
 ul.detail-main-list > li a div {
   background-color: #ededed;
 }
-
+ul.detail-main-list > li a button {
+  background-color: white;
+  border: none;
+}
 
 ul.detail-main-list > li.selected {
   background-color: #ffae00;
