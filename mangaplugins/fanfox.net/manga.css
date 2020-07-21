@@ -5,10 +5,6 @@ ul.detail-main-list > li {
 ul.detail-main-list > li a div {
   background-color: #ededed;
 }
-ul.detail-main-list > li button {
-  background-color: white;
-  border: none;
-}
 
 ul.detail-main-list > li.selected {
   background-color: #ffae00;
@@ -33,6 +29,7 @@ ul.detail-main-list > li.processing a div {
 ul.detail-main-list > li button.processing {
   background-color: #9EF1E4;
   font-weight: bold;
+  border: none;
 }
 
 ul.detail-main-list > li.success {
@@ -50,4 +47,5 @@ ul.detail-main-list > li button.success {
   background-color: green;
   font-weight: bold;
   color: white;
+  border: none;
 }
